@@ -3,6 +3,7 @@
       "access": "public"
     },
     "scripts": {
+      "build": "tsc -p ./tsconfig.json --declaration --rootDir ?? --outDir ?? <src_file>",
       "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
@@ -17,7 +18,7 @@
       "url": "https://github.com/gauntface/hopin-web-build-tools/issues"
     },
     "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
-    "name": "@hopin/web-build-tools_ts-shared",
+    "name": "@hopin/web-build-tools_ts-browser-module",
     "description": "A set of methods to make building web projects easier.",
     "author": "gauntface",
     "license": "Apache-2.0",
