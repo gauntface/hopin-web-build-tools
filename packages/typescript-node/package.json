@@ -1,0 +1,28 @@
+{
+    "publishConfig": {
+      "access": "public"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "devDependencies": {
+    },
+    "dependencies": {
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/gauntface/hopin-web-build-tools.git"
+    },
+    "bugs": {
+      "url": "https://github.com/gauntface/hopin-web-build-tools/issues"
+    },
+    "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
+    "name": "@hopin/web-build-tools_ts-node",
+    "description": "A set of methods to make building web projects easier.",
+    "author": "gauntface",
+    "license": "Apache-2.0",
+    "main": "./dist/commonjs/node/index.js",
+    "types": "./dist/commonjs/node/index.d.ts",
+    "version": "0.0.1"
+  }
+  

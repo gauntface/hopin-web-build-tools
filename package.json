@@ -1,11 +1,8 @@
 {
   "name": "@hopin/web-build-tools",
+  "private": true,
   "version": "1.0.0",
   "description": "A set of methods to make building web projects easier.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gauntface/hopin-web-build-tools.git"
@@ -16,6 +13,9 @@
     "url": "https://github.com/gauntface/hopin-web-build-tools/issues"
   },
   "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "devDependencies": {
     "lerna": "^3.0.0-rc.0"
   }
