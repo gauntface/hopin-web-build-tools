@@ -2,15 +2,10 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "build": "tsc -p ./tsconfig.json --declaration --rootDir ?? --outDir ?? <src_file>",
-    "test": "ava test/*.js --verbose"
-  },
+  "scripts": {},
   "devDependencies": {},
   "dependencies": {
-    "@hopin/wbt-config": "0.0.1",
-    "glob": "^7.1.2",
-    "typescript": "^3.0.1"
+    "@hopin/logger": "0.0.4"
   },
   "repository": {
     "type": "git",
@@ -20,7 +15,7 @@
     "url": "https://github.com/gauntface/hopin-web-build-tools/issues"
   },
   "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
-  "name": "@hopin/wbt-ts-node",
+  "name": "@hopin/wbt-config",
   "description": "A set of methods to make building web projects easier.",
   "author": "gauntface",
   "license": "Apache-2.0",

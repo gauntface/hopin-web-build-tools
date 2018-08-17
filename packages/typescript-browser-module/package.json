@@ -18,7 +18,7 @@
       "url": "https://github.com/gauntface/hopin-web-build-tools/issues"
     },
     "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
-    "name": "@hopin/web-build-tools_ts-browser-module",
+    "name": "@hopin/wbt-ts-browser",
     "description": "A set of methods to make building web projects easier.",
     "author": "gauntface",
     "license": "Apache-2.0",

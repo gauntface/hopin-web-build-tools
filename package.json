@@ -17,6 +17,11 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "ava": "^0.25.0",
+    "fs-extra": "^7.0.0",
     "lerna": "^3.0.0-rc.0"
+  },
+  "dependencies": {
+    "@hopin/logger": "0.0.4"
   }
 }
