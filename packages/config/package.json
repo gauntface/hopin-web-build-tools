@@ -3,9 +3,8 @@
     "access": "public"
   },
   "scripts": {},
-  "devDependencies": {},
   "dependencies": {
-    "@hopin/wbt-common": "0.0.1"
+    "@hopin/wbt-common": "^0.0.1"
   },
   "repository": {
     "type": "git",

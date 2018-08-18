@@ -3,7 +3,6 @@
     "access": "public"
   },
   "scripts": {},
-  "devDependencies": {},
   "dependencies": {
     "@hopin/logger": "0.0.4"
   },

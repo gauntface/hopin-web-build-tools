@@ -5,10 +5,9 @@
   "scripts": {
     "test": "ava test/*.js --verbose"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@hopin/wbt-config": "0.0.1",
-    "@hopin/wbt-common": "0.0.1",
+    "@hopin/wbt-common": "^0.0.1",
+    "@hopin/wbt-config": "^0.0.1",
     "glob": "^7.1.2",
     "typescript": "^3.0.1"
   },
