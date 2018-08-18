@@ -12,7 +12,7 @@ const mkdtemp = promisify(fs.mkdtemp);
 
 test('should build typescript files using default config', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'working-project');
-	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-node'));
+	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-browser'));
 	setConfig(srcDir, dstDir);
 
 	const report = await build();	
@@ -37,7 +37,7 @@ test('should build typescript files using default config', async (t) => {
 
 test('should build typescript files using custom config', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'working-project');
-	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-node'));
+	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-browser'));
 	setConfig("", "");
 
 	const report = await build(srcDir, dstDir);	

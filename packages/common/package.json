@@ -5,7 +5,7 @@
   "scripts": {},
   "devDependencies": {},
   "dependencies": {
-    "@hopin/wbt-common": "0.0.1"
+    "@hopin/logger": "0.0.4"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "url": "https://github.com/gauntface/hopin-web-build-tools/issues"
   },
   "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
-  "name": "@hopin/wbt-config",
+  "name": "@hopin/wbt-common",
   "description": "A set of methods to make building web projects easier.",
   "author": "gauntface",
   "license": "Apache-2.0",

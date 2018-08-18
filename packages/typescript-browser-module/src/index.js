@@ -28,7 +28,7 @@ async function build(srcDir, dstDir) {
     ignore: [ignoreDefitionsPattern, ignoreUnderscorePrefixPattern]
   });
 
-  logger.debug(`Building the following TypeScript files for node:`);
+  logger.debug(`Building the following TypeScript files for browser:`);
   srcFiles.forEach((file) => logger.debug(`    ${path.relative(process.cwd(), file)}`));
 
   // require.resolve('typescript') returns the path to lib/typescript.js, so step back to get the typescript
@@ -41,7 +41,8 @@ async function build(srcDir, dstDir) {
     const tscOptions = [
       '--declaration',
       '--target', 'es2017',
-      '--module', 'commonjs',
+      '--module', 'es2015',
+      '--moduleResolution', 'node',
       '--noImplicitAny', 'true',
       '--removeComments', 'true',
       '--preserveConstEnums', 'true',
