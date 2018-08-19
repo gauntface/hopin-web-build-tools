@@ -42,6 +42,7 @@ async function build(srcDir, dstDir) {
       '--declaration',
       '--target', 'es2017',
       '--module', 'commonjs',
+      '--moduleResolution', 'node',
       '--noImplicitAny', 'true',
       '--removeComments', 'true',
       '--preserveConstEnums', 'true',
