@@ -5,7 +5,7 @@ let srcDirectory = null;
 let dstDirectory = null;
 let additionalState = null;
 
-function setConfig(srcRootDir, dstRootDir, state = {}) {
+function setConfig(srcDir, dstDir, state = {}) {
   if (typeof srcDir !== 'string') {
     logger.error('setConfig() expected `srcDir` to be a string, got: ', typeof srcDir);
     throw new Error('setConfig() expected `srcDir` to be a string');
