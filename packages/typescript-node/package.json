@@ -9,6 +9,7 @@
     "@hopin/wbt-common": "^0.0.2",
     "@hopin/wbt-config": "^0.0.2",
     "@types/node": "^10.7.1",
+    "ava": "^0.25.0",
     "glob": "^7.1.2",
     "typescript": "^3.0.1"
   },

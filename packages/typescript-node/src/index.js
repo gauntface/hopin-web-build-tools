@@ -5,24 +5,23 @@ const {logger, spawn} = require('@hopin/wbt-common');
 const {getConfig} = require('@hopin/wbt-config');
 const glob = promisify(require('glob'));
 
-async function build(srcDir, dstDir) {
+// TODO: Make src a subdirectory to restrict glob
+async function build(subDir) {
   const config = getConfig()
 
-  if (srcDir) {
-    config.src = srcDir
+  // Get all files to build
+  let globSrc = config.src;
+  if (subDir) {
+    globSrc = path.join(config.src, subDir);
   }
 
-  if (dstDir) {
-    config.dst = dstDir
-  }
 
-  logger.debug(`TypeScript source : ${path.relative(process.cwd(), config.src)}`);
+  logger.debug(`TypeScript source : ${path.relative(process.cwd(), globSrc)}`);
   logger.debug(`TypeScript dest   : ${path.relative(process.cwd(), config.dst)}`);
 
-  // Get all files to build
-  const globPattern = path.posix.join(config.src, '**', '*.ts');
-  const ignoreDefitionsPattern = path.posix.join(config.src, '**', '*.d.ts');
-  const ignoreUnderscorePrefixPattern = path.posix.join(config.src, '**', '_*.ts');
+  const globPattern = path.posix.join(globSrc, '**', '*.ts');
+  const ignoreDefitionsPattern = path.posix.join(globSrc, '**', '*.d.ts');
+  const ignoreUnderscorePrefixPattern = path.posix.join(globSrc, '**', '_*.ts');
   const srcFiles = await glob(globPattern, {
     strict: true,
     ignore: [ignoreDefitionsPattern, ignoreUnderscorePrefixPattern]
