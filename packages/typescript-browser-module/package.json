@@ -6,8 +6,8 @@
     "test": "ava test/*.js --verbose"
   },
   "dependencies": {
-    "@hopin/wbt-common": "^0.0.2",
-    "@hopin/wbt-config": "^0.0.2",
+    "@hopin/wbt-common": "^0.0.3",
+    "@hopin/wbt-config": "^0.0.3",
     "glob": "^7.1.2",
     "typescript": "^3.0.1"
   },
@@ -25,5 +25,5 @@
   "license": "Apache-2.0",
   "main": "./dist/commonjs/node/index.js",
   "types": "./dist/commonjs/node/index.d.ts",
-  "version": "0.0.2"
+  "version": "0.0.3"
 }
