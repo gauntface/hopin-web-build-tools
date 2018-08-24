@@ -1,4 +1,12 @@
-function runTS() {
+const {getConfig} = require('@hopin/wbt-config');
+const {logger, spawn} = require('@hopin/wbt-common');
+const path = require('path');
+
+const {promisify} = require('util');
+const glob = promisify(require('glob'));
+
+
+async function runTS(subDir, outputModule, additionalFlags) {
     const config = getConfig()
 
   // Get all files to build
@@ -31,7 +39,7 @@ function runTS() {
     const tscOptions = [
       '--declaration',
       '--target', 'es2017',
-      '--module', 'commonjs',
+      '--module', outputModule,
       '--moduleResolution', 'node',
       '--noImplicitAny', 'true',
       '--removeComments', 'true',
@@ -39,8 +47,13 @@ function runTS() {
       '--sourceMap', 'true',
       '--rootDir', config.src,
       '--outDir', config.dst,
-      srcFile,
-    ]
+    ];
+
+    if (additionalFlags) {
+      tscOptions.push(...additionalFlags);
+    }
+
+    tscOptions.push(srcFile);
     logger.debug(`Running command: 'tsc ${tscOptions.join(' ')}'`);
     const result = await spawn(tsCompilerPath, tscOptions);
     if (result.code != 0) {
@@ -51,9 +64,11 @@ function runTS() {
 
   await Promise.all(buildPromises);
 
-  // TODO: Minify output
-
   return {
     srcFiles,
   };
 }
+
+module.exports = {
+  runTS,
+};

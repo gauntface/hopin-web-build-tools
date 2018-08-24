@@ -1,0 +1,29 @@
+{
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "ava test/*.js --verbose"
+  },
+  "dependencies": {
+    "@hopin/wbt-common": "^0.0.4",
+    "@hopin/wbt-config": "^0.0.4",
+    "@types/node": "^10.7.1",
+    "glob": "^7.1.2",
+    "typescript": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauntface/hopin-web-build-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gauntface/hopin-web-build-tools/issues"
+  },
+  "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
+  "name": "@hopin/wbt-ts-shared",
+  "description": "A set of methods to make building web projects easier.",
+  "author": "gauntface",
+  "license": "Apache-2.0",
+  "main": "./src/index.js",
+  "version": "0.0.4"
+}

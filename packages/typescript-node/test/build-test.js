@@ -6,7 +6,7 @@ const fs = require('fs-extra');
 const {setConfig} = require('@hopin/wbt-config');
 const {logger} = require('@hopin/wbt-common');
 
-const {build} = require('../src/index');
+const {build} = require('../src');
 
 const mkdtemp = promisify(fs.mkdtemp);
 
