@@ -66,6 +66,8 @@ async function build(srcDir, dstDir) {
   };
 }
 
+build.displayName = `@hopin/wbt-ts-node`;
+
 module.exports = {
   build,
 };

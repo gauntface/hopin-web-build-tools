@@ -1,13 +1,5 @@
-const {promisify} = require('util');
-const path = require('path');
-
-const {logger, spawn} = require('@hopin/wbt-common');
-const {getConfig} = require('@hopin/wbt-config');
-const glob = promisify(require('glob'));
-
-// TODO: Make src a subdirectory to restrict glob
-async function build(subDir) {
-  const config = getConfig()
+function runTS() {
+    const config = getConfig()
 
   // Get all files to build
   let globSrc = config.src;
@@ -65,9 +57,3 @@ async function build(subDir) {
     srcFiles,
   };
 }
-
-build.displayName = `@hopin/wbt-ts-node`;
-
-module.exports = {
-  build,
-};
