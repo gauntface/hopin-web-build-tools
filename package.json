@@ -19,6 +19,6 @@
   "devDependencies": {
     "ava": "0.25.0",
     "fs-extra": "7.0.0",
-    "lerna": "3.2.1"
+    "lerna": "3.3.0"
   }
 }
