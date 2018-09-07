@@ -4,7 +4,7 @@
   },
   "scripts": {},
   "dependencies": {
-    "@hopin/logger": "0.0.4"
+    "@hopin/logger": "1.0.0"
   },
   "repository": {
     "type": "git",
