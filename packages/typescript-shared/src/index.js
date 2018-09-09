@@ -67,7 +67,9 @@ async function runTS(outputModule, overrides = {}, additionalFlags) {
   };
 }
 
-const minifyJS = async function(outputType, name) {
+const minifyJS = async function(outputType, name, overrides = {}) {
+  const config = getConfig(overrides);
+  
   let format = null;
   switch (outputType) {
     case 'browser': {
@@ -85,7 +87,6 @@ const minifyJS = async function(outputType, name) {
       throw new Error(`Unknown minify output type: ${outputType}`);
     }
   }
-  const config = getConfig();
 
   logger.debug(`Minify source : ${path.relative(process.cwd(), config.dst)}`);
   logger.debug(`Minify dest   : ${path.relative(process.cwd(), config.dst)}`);

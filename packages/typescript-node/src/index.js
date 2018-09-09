@@ -3,7 +3,7 @@ const {runTS, minifyJS} = require('@hopin/wbt-ts-shared');
 async function build(overrides) {
   const report = await runTS('commonjs', overrides);
 
-  await minifyJS('node');
+  await minifyJS('node', null, overrides);
 
   return report;
 }

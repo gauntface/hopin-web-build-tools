@@ -5,7 +5,7 @@ async function build(name, overrides) {
   const report = await runTS('es2015', overrides);
 
   // TODO: Build this to dst
-  await minifyJS('browser', name);
+  await minifyJS('browser', name, overrides);
 
   return report;
 }
