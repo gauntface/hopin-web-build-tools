@@ -8,7 +8,11 @@ async function build(subDir) {
   return report;
 }
 
-build.displayName = `@hopin/wbt-ts-browser`;
+function gulpBuild(subDir) {
+  const func = () => build(subDir)
+  func.displayName = `@hopin/wbt-ts-browser`;
+  return func
+}
 
 module.exports = {
   build,
