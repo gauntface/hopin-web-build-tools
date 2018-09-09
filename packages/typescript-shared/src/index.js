@@ -33,34 +33,37 @@ async function runTS(outputModule, overrides = {}, additionalFlags) {
   const tsCompilerPath = path.join(tsModulePath, 'bin', 'tsc');
   logger.debug(`Using typescript compiler '${path.relative(process.cwd(), tsCompilerPath)}'`);
 
-  const buildPromises = srcFiles.map(async (srcFile) => {
-    const tscOptions = [
-      '--declaration',
-      '--target', 'es2017',
-      '--module', outputModule,
-      '--moduleResolution', 'node',
-      '--noImplicitAny', 'true',
-      '--removeComments', 'true',
-      '--preserveConstEnums', 'true',
-      '--sourceMap', 'true',
-      '--rootDir', overrides.rootDir ? overrides.rootDir : config.src,
-      '--outDir', config.dst,
-    ];
-
-    if (additionalFlags) {
-      tscOptions.push(...additionalFlags);
-    }
-
-    tscOptions.push(srcFile);
-    logger.debug(`Running command: 'tsc ${tscOptions.join(' ')}'`);
-    const result = await spawn(tsCompilerPath, tscOptions);
-    if (result.code != 0) {
-      logger.warn(result.stdout.split('\\n').join('\n'))
-      logger.warn(result.stderr.split('\\n').join('\n'))
-    }
+  let promiseChain = Promise.resolve();
+  srcFiles.forEach(async (srcFile) => {
+    promiseChain = promiseChain.then(async () => {
+      const tscOptions = [
+        '--declaration',
+        '--target', 'es2017',
+        '--module', outputModule,
+        '--moduleResolution', 'node',
+        '--noImplicitAny', 'true',
+        '--removeComments', 'true',
+        '--preserveConstEnums', 'true',
+        '--sourceMap', 'true',
+        '--rootDir', overrides.rootDir ? overrides.rootDir : config.src,
+        '--outDir', config.dst,
+      ];
+  
+      if (additionalFlags) {
+        tscOptions.push(...additionalFlags);
+      }
+  
+      tscOptions.push(srcFile);
+      logger.debug(`Running command: 'tsc ${tscOptions.join(' ')}'`);
+      const result = await spawn(tsCompilerPath, tscOptions);
+      if (result.code != 0) {
+        logger.warn(result.stdout.split('\\n').join('\n'))
+        logger.warn(result.stderr.split('\\n').join('\n'))
+      }
+    });
   });
 
-  await Promise.all(buildPromises);
+  await promiseChain;
 
   return {
     srcFiles,
@@ -69,7 +72,7 @@ async function runTS(outputModule, overrides = {}, additionalFlags) {
 
 const minifyJS = async function(outputType, name, overrides = {}) {
   const config = getConfig(overrides);
-  
+
   let format = null;
   switch (outputType) {
     case 'browser': {
