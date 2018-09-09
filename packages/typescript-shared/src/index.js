@@ -70,7 +70,7 @@ async function runTS(subDir, outputModule, additionalFlags) {
   };
 }
 
-const minifyJS = async function(outputType) {
+const minifyJS = async function(outputType, name) {
   let format = null;
   switch (outputType) {
     case 'browser': {
@@ -113,6 +113,7 @@ const minifyJS = async function(outputType) {
     };
     const outputOptions = {
       format,
+      name,
       sourcemap: true,
       file: srcFile,
     };

@@ -9,12 +9,15 @@ const {build} = require('../src');
 
 const mkdtemp = promisify(fs.mkdtemp);
 
+// TODO: Add example of no name with error
+// TODO: Add example of gulp build
+
 test('should build typescript files using default config', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'working-project');
 	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-browser'));
 	setConfig(srcDir, dstDir);
 
-	const report = await build();	
+	const report = await build('examplename');	
 	
 	t.deepEqual(report.srcFiles, [
 		path.join(srcDir, 'nest', 'nested-file.ts'),
@@ -39,7 +42,7 @@ test('should build typescript files using custom config', async (t) => {
 	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-node'));
 	setConfig(srcDir, dstDir);
 
-	const report = await build('nest');	
+	const report = await build('examplename', 'nest');	
 	
 	t.deepEqual(report.srcFiles, [
 		path.join(srcDir, 'nest', 'nested-file.ts'),
