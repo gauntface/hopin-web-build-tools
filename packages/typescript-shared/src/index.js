@@ -104,30 +104,33 @@ const minifyJS = async function(outputType, name, overrides = {}) {
   logger.debug(`Minifying the following JavaScript files for the browser:`);
   srcFiles.forEach((file) => logger.debug(`    ${path.relative(process.cwd(), file)}`));
 
-  const buildPromises = srcFiles.map(async (srcFile) => {
-    const inputOpts = {
-      input: srcFile,
-      plugins: [
-        // This module enabled Rollup to *ingest* a sourcemap to apply
-        // further manipulations
-        sourcemapPlugin(),
-        // Minify the bundled JS
-        terser(),
-      ],
-    };
-    const outputOptions = {
-      format,
-      name,
-      sourcemap: true,
-      file: srcFile,
-    };
-    const bundle = await rollup.rollup(inputOpts);
-
-    // or write the bundle to disk
-    await bundle.write(outputOptions);
+  let promiseChain = Promise.resolve();
+  srcFiles.forEach(async (srcFile) => {
+    promiseChain = promiseChain.then(async () => {
+      const inputOpts = {
+        input: srcFile,
+        plugins: [
+          // This module enabled Rollup to *ingest* a sourcemap to apply
+          // further manipulations
+          sourcemapPlugin(),
+          // Minify the bundled JS
+          terser(),
+        ],
+      };
+      const outputOptions = {
+        format,
+        name,
+        sourcemap: true,
+        file: srcFile,
+      };
+      const bundle = await rollup.rollup(inputOpts);
+  
+      // or write the bundle to disk
+      await bundle.write(outputOptions);
+    });
   });
 
-  await Promise.all(buildPromises);
+  await promiseChain;
 
   return {
     srcFiles,
