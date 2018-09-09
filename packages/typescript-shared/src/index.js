@@ -7,14 +7,11 @@ const {terser} = require('rollup-plugin-terser');
 const {promisify} = require('util');
 const glob = promisify(require('glob'));
 
-async function runTS(subDir, outputModule, additionalFlags) {
-  const config = getConfig()
+async function runTS(outputModule, overrides, additionalFlags) {
+  const config = getConfig(overrides)
 
   // Get all files to build
   let globSrc = config.src;
-  if (subDir) {
-    globSrc = path.join(config.src, subDir);
-  }
 
   logger.debug(`TypeScript source : ${path.relative(process.cwd(), globSrc)}`);
   logger.debug(`TypeScript dest   : ${path.relative(process.cwd(), config.dst)}`);
@@ -75,6 +72,9 @@ const minifyJS = async function(outputType, name) {
   switch (outputType) {
     case 'browser': {
       format = 'iife';
+      if (!name) {
+        throw new Error('You must provide a name for generatin browser bundle.');
+      }
       break;
     }
     case 'node': {

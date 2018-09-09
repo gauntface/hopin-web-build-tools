@@ -45,7 +45,7 @@ test.serial('should log in browser', async (t) => {
 
 	setConfig(srcDir, dstDir);
 
-	const report = await build();	
+	const report = await build('examplename');	
 	
 	t.deepEqual(report.srcFiles, [
 		path.join(srcDir, 'nest', 'nested-file.ts'),

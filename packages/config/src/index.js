@@ -36,12 +36,22 @@ function setConfig(srcDir, dstDir, state = {}) {
   additionalState = state
 }
 
-function getConfig() {
-  return {
+function getConfig(overrides = {}) {
+  if (overrides.src) {
+    if (!path.isAbsolute(overrides.src)) {
+      overrides.src = path.resolve(srcDirectory, overrides.src);
+    }
+  }
+  if (overrides.dst) {
+    if (!path.isAbsolute(overrides.dst)) {
+      overrides.dst = path.resolve(dstDirectory, overrides.dst);
+    }
+  }
+  return Object.assign({}, {
     src: srcDirectory,
     dst: dstDirectory,
     state: additionalState,
-  }
+  }, overrides);
 }
 
 module.exports = {

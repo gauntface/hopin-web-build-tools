@@ -40,7 +40,7 @@ test('should build typescript files using custom config', async (t) => {
 	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-node'));
 	setConfig(srcDir, dstDir);
 
-	const report = await gulpBuild('nest')();	
+	const report = await gulpBuild({src: 'nest', dst: 'nest'})();	
 	
 	t.deepEqual(report.srcFiles, [
 		path.join(srcDir, 'nest', 'nested-file.ts'),
