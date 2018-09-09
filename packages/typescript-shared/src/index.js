@@ -7,7 +7,7 @@ const {terser} = require('rollup-plugin-terser');
 const {promisify} = require('util');
 const glob = promisify(require('glob'));
 
-async function runTS(outputModule, overrides, additionalFlags) {
+async function runTS(outputModule, overrides = {}, additionalFlags) {
   const config = getConfig(overrides)
 
   // Get all files to build
@@ -43,7 +43,7 @@ async function runTS(outputModule, overrides, additionalFlags) {
       '--removeComments', 'true',
       '--preserveConstEnums', 'true',
       '--sourceMap', 'true',
-      '--rootDir', config.src,
+      '--rootDir', overrides.rootDir ? overrides.rootDir : config.src,
       '--outDir', config.dst,
     ];
 
