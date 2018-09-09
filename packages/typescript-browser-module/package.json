@@ -19,7 +19,6 @@
   "description": "A set of methods to make building web projects easier.",
   "author": "gauntface",
   "license": "Apache-2.0",
-  "main": "./dist/commonjs/node/index.js",
-  "types": "./dist/commonjs/node/index.d.ts",
+  "main": "./src/index.js",
   "version": "0.0.5"
 }
