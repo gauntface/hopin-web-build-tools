@@ -27,7 +27,7 @@ async function runTS(subDir, outputModule, additionalFlags) {
     ignore: [ignoreDefitionsPattern, ignoreUnderscorePrefixPattern]
   });
 
-  logger.log(`Building the following TypeScript files for node:`);
+  logger.log(`Building the following TypeScript files:`);
   srcFiles.forEach((file) => logger.log(`    ${path.relative(process.cwd(), file)}`));
 
   // require.resolve('typescript') returns the path to lib/typescript.js, so step back to get the typescript
