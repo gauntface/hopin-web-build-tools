@@ -16,4 +16,5 @@ function gulpBuild(subDir) {
 
 module.exports = {
   build,
+  gulpBuild,
 };
