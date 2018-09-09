@@ -1,9 +1,9 @@
-const {runTS} = require('@hopin/wbt-ts-shared');
+const {runTS, minifyJS} = require('@hopin/wbt-ts-shared');
 
 async function build(subDir) {
-  const report = runTS(subDir, 'commonjs');
+  const report = await runTS(subDir, 'commonjs');
 
-  // TODO: Minify output
+  await minifyJS('node');
 
   return report;
 }

@@ -22,7 +22,7 @@ class TestServer {
         let host = addr.address;
         if (addr.family === 'IPv6') {
           // host = `[${host}]`;
-          console.warn('Setting host to localhost for IPv6.');
+          // console.warn('Setting host to localhost for IPv6.');
           host = 'localhost';
         }
         resolve(`http://${host}:${addr.port}`);

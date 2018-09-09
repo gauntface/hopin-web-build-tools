@@ -2,7 +2,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {},
   "dependencies": {
     "@hopin/wbt-common": "^0.0.4"
   },

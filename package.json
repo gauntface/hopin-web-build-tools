@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
   "scripts": {
-    "test": "ava packages/*/test/*-test.js --verbose"
+    "test": "ava ./packages/*/test/*-test.js --verbose"
   },
   "devDependencies": {
     "@types/node": "^10.9.1",
