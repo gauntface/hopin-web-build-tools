@@ -21,7 +21,7 @@
     "ava": "0.25.0",
     "express": "4.16.3",
     "fs-extra": "7.0.0",
-    "puppeteer": "1.7.0",
+    "puppeteer": "1.8.0",
     "lerna": "3.3.0"
   }
 }
