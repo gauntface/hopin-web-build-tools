@@ -1,7 +1,7 @@
 {
   "name": "@hopin/web-build-tools",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A set of methods to make building web projects easier.",
   "repository": {
     "type": "git",
