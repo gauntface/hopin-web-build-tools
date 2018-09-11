@@ -7,7 +7,7 @@ const {terser} = require('rollup-plugin-terser');
 const {promisify} = require('util');
 const glob = promisify(require('glob'));
 
-async function runTS(outputModule, overrides = {}, additionalFlags) {
+async function runTS(outputModule, overrides = {}) {
   const config = getConfig(overrides)
 
   // Get all files to build
@@ -49,8 +49,8 @@ async function runTS(outputModule, overrides = {}, additionalFlags) {
         '--outDir', config.dst,
       ];
   
-      if (additionalFlags) {
-        tscOptions.push(...additionalFlags);
+      if (overrides.flags) {
+        tscOptions.push(...overrides.flags);
       }
   
       tscOptions.push(srcFile);
