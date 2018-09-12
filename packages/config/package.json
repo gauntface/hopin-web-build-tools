@@ -3,7 +3,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@hopin/wbt-common": "^0.0.15"
+    "@hopin/wbt-common": "^0.0.16"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,5 @@
   "author": "gauntface",
   "license": "Apache-2.0",
   "main": "./src/index.js",
-  "version": "0.0.15"
+  "version": "0.0.16"
 }
