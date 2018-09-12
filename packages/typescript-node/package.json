@@ -3,8 +3,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@hopin/wbt-config": "^0.0.14",
-    "@hopin/wbt-ts-shared": "^0.0.14",
+    "@hopin/wbt-config": "^0.0.15",
+    "@hopin/wbt-ts-shared": "^0.0.15",
     "@types/node": "^10.7.1",
     "rollup-plugin-hashbang": "^1.0.1"
   },
@@ -21,5 +21,5 @@
   "author": "gauntface",
   "license": "Apache-2.0",
   "main": "./src/index.js",
-  "version": "0.0.14"
+  "version": "0.0.15"
 }
