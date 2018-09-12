@@ -60,6 +60,9 @@ async function runTS(outputModule, overrides = {}) {
         logger.warn(result.stdout.split('\\n').join('\n'))
         logger.warn(result.stderr.split('\\n').join('\n'))
       }
+    }).catch((err) => {
+      logger.error(`Unable to build '${srcFile}' with tsc.`);
+      throw err
     });
   });
 
@@ -107,18 +110,22 @@ const minifyJS = async function(outputType, name, overrides = {}) {
   let promiseChain = Promise.resolve();
   srcFiles.forEach(async (srcFile) => {
     promiseChain = promiseChain.then(async () => {
+      const plugins = [
+        // This module enabled Rollup to *ingest* a sourcemap to apply
+        // further manipulations
+        sourcemapPlugin(),
+        // Minify the bundled JS
+        terser(),        
+      ];
+
+      if (overrides.rollupPlugins) {
+        // Any additional plugins
+        plugins.push(...overrides.rollupPlugins)
+      }
+      
       const inputOpts = {
         input: srcFile,
-        plugins: [
-          // This module enabled Rollup to *ingest* a sourcemap to apply
-          // further manipulations
-          sourcemapPlugin(),
-          // Minify the bundled JS
-          terser(),
-          
-          // Any additional plugins
-          overrides.rollupPlugins,
-        ],
+        plugins,
       };
       const outputOptions = {
         format,
@@ -130,6 +137,9 @@ const minifyJS = async function(outputType, name, overrides = {}) {
   
       // or write the bundle to disk
       await bundle.write(outputOptions);
+    }).catch((err) => {
+      logger.error(`Unable to minify '${srcFile}' with rollup.`);
+      throw err
     });
   });
 
