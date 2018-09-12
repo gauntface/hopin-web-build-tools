@@ -4,7 +4,6 @@ const os = require('os');
 const {test} = require('ava');
 const fs = require('fs-extra');
 const {setConfig} = require('@hopin/wbt-config');
-const {logger} = require('@hopin/wbt-common');
 
 const {build} = require('../src');
 
@@ -18,11 +17,13 @@ test('should build typescript files using default config', async (t) => {
 	const report = await build();	
 	
 	t.deepEqual(report.srcFiles, [
+		path.join(srcDir, 'cli.ts'),
 		path.join(srcDir, 'nest', 'nested-file.ts'),
 		path.join(srcDir, 'toplevel-file.ts'),
 	]);
 
 	const expectedDstFiles = [
+		path.join(dstDir, 'cli.js'),
 		path.join(dstDir, 'nest', 'nested-file.js'),
 		path.join(dstDir, 'toplevel-file.js'),
 	];

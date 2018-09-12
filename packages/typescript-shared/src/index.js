@@ -115,6 +115,9 @@ const minifyJS = async function(outputType, name, overrides = {}) {
           sourcemapPlugin(),
           // Minify the bundled JS
           terser(),
+          
+          // Any additional plugins
+          overrides.rollupPlugins,
         ],
       };
       const outputOptions = {
