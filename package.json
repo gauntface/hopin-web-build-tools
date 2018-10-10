@@ -17,7 +17,7 @@
     "test": "ava ./packages/*/test/*-test.js --verbose"
   },
   "devDependencies": {
-    "@types/node": "10.9.4",
+    "@types/node": "10.11.7",
     "ava": "0.25.0",
     "express": "4.16.3",
     "fs-extra": "7.0.0",
