@@ -21,11 +21,11 @@
   "devDependencies": {
     "@types/node": "10.11.7",
     "ava": "0.25.0",
-    "coveralls": "^3.0.2",
+    "coveralls": "3.0.2",
     "express": "4.16.4",
     "fs-extra": "7.0.0",
     "lerna": "3.4.3",
-    "nyc": "^13.1.0",
+    "nyc": "13.1.0",
     "puppeteer": "1.9.0"
   }
 }
