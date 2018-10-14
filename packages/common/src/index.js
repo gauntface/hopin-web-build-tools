@@ -2,7 +2,7 @@ const path = require('path');
 const {logger} = require('@hopin/logger');
 const childProcess = require('child_process');
 
-logger.setPrefix('[hopin-wbt]');
+logger.setPrefix('@hopin/wbt');
 
 function spawn(cmd, opts) {
   const relativeCmd = path.relative(process.cwd(), cmd);
