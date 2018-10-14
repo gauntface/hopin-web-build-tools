@@ -22,6 +22,6 @@
     "express": "4.16.3",
     "fs-extra": "7.0.0",
     "puppeteer": "1.8.0",
-    "lerna": "3.3.1"
+    "lerna": "3.4.3"
   }
 }
