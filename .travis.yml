@@ -11,6 +11,7 @@ node_js:
   - "10"
 
 script:
+- lerne bootstrap
 - npm run test
 
 after_script:
