@@ -21,6 +21,7 @@
   "devDependencies": {
     "@types/node": "10.11.7",
     "ava": "0.25.0",
+    "coveralls": "^3.0.2",
     "express": "4.16.4",
     "fs-extra": "7.0.0",
     "lerna": "3.4.3",
