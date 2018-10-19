@@ -3,7 +3,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@hopin/wbt-common": "^0.0.17"
+    "@hopin/wbt-common": "^0.0.17",
+    "@hopin/logger": "^2.0.0"
   },
   "repository": {
     "type": "git",

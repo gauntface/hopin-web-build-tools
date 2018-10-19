@@ -3,6 +3,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@hopin/logger": "^2.0.0",
     "@hopin/wbt-config": "^0.0.17",
     "@hopin/wbt-ts-shared": "^0.0.17",
     "@types/node": "^10.7.1"

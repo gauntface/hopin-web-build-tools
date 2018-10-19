@@ -1,5 +1,5 @@
 const {getConfig} = require('@hopin/wbt-config');
-const {logger, spawn} = require('@hopin/wbt-common');
+const {spawn} = require('@hopin/wbt-common');
 const path = require('path');
 const rollup = require('rollup');
 const sourcemapPlugin = require('rollup-plugin-sourcemaps');
@@ -7,7 +7,7 @@ const {terser} = require('rollup-plugin-terser');
 const {promisify} = require('util');
 const glob = promisify(require('glob'));
 
-async function runTS(outputModule, overrides = {}) {
+async function runTS(logger, outputModule, overrides = {}) {
   const config = getConfig(overrides)
 
   // Get all files to build
@@ -24,8 +24,8 @@ async function runTS(outputModule, overrides = {}) {
     ignore: [ignoreDefitionsPattern, ignoreUnderscorePrefixPattern]
   });
 
-  logger.log(`Building the following TypeScript files:`);
-  srcFiles.forEach((file) => logger.log(`    ${path.relative(process.cwd(), file)}`));
+  logger.debug(`Building the following TypeScript files:`);
+  srcFiles.forEach((file) => logger.debug(`    ${path.relative(process.cwd(), file)}`));
 
   // require.resolve('typescript') returns the path to lib/typescript.js, so step back to get the typescript
   // module directory
@@ -55,7 +55,7 @@ async function runTS(outputModule, overrides = {}) {
   
       tscOptions.push(srcFile);
       logger.debug(`Running command: 'tsc ${tscOptions.join(' ')}'`);
-      const result = await spawn(tsCompilerPath, tscOptions);
+      const result = await spawn(logger, tsCompilerPath, tscOptions);
       if (result.code != 0) {
         logger.warn(result.stdout.split('\\n').join('\n'))
         logger.warn(result.stderr.split('\\n').join('\n'))
@@ -73,7 +73,7 @@ async function runTS(outputModule, overrides = {}) {
   };
 }
 
-const minifyJS = async function(outputType, name, overrides = {}) {
+const minifyJS = async function(logger, outputType, name, overrides = {}) {
   const config = getConfig(overrides);
 
   let format = null;

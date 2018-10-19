@@ -1,5 +1,8 @@
 const path = require('path');
-const {logger} = require('@hopin/wbt-common');
+const {Logger} = require('@hopin/logger');
+
+const logger = new Logger();
+logger.setPrefix('[@hopin/wbt-config]')
 
 let srcDirectory = null;
 let dstDirectory = null;
