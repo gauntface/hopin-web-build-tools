@@ -1,14 +1,18 @@
 const {runTS, minifyJS} = require('@hopin/wbt-ts-shared');
 const hashbang = require('rollup-plugin-hashbang');
+const {Logger} = require('@hopin/logger');
+
+const logger = new Logger();
+logger.setPrefix('[@hopin/wbt-ts-node]');
 
 async function build(overrides = {}) {
-  const report = await runTS('commonjs', overrides);
+  const report = await runTS(logger, 'commonjs', overrides);
 
   if (!overrides.rollupPlugins) {
     overrides.rollupPlugins = [];
   }
   overrides.rollupPlugins.push(hashbang());
-  await minifyJS('node', null, overrides);
+  await minifyJS(logger, 'node', null, overrides);
 
   return report;
 }

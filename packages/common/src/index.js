@@ -1,16 +1,13 @@
 const path = require('path');
-const {logger} = require('@hopin/logger');
 const childProcess = require('child_process');
 
-logger.setPrefix('@hopin/wbt');
-
-function spawn(cmd, opts) {
+function spawn(logger, cmd, opts) {
   const relativeCmd = path.relative(process.cwd(), cmd);
   return new Promise((resolve, reject) => {
     let stdout = '';
     let stderr = '';
     const process = childProcess.spawn(cmd, opts);
-
+    
     process.on('error', (err) => {
       reject(err);
     });
@@ -42,6 +39,5 @@ function spawn(cmd, opts) {
 }
 
 module.exports = {
-  logger,
   spawn,
 }

@@ -3,7 +3,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@hopin/logger": "1.0.2"
   },
   "repository": {
     "type": "git",
