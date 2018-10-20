@@ -17,9 +17,9 @@
 ## @hopin/wbt-ts-node
 
 <p align=center>
-  <a href="https://david-dm.org/gauntface/@hopin/wbt-ts-node" title="dependencies status"><img src="https://david-dm.org/gauntface/@hopin/wbt-ts-node/status.svg"/></a>
-  <a href="https://david-dm.org/gauntface/@hopin/wbt-ts-node?type=dev" title="devDependencies status"><img src="https://david-dm.org/gauntface/@hopin/wbt-ts-node/dev-status.svg"/></a>
-  <a href="https://david-dm.org/gauntface/@hopin/wbt-ts-node?type=peer" title="peerDependencies status"><img src="https://david-dm.org/gauntface/@hopin/wbt-ts-node/peer-status.svg"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?path=packages/typescript-node" title="dependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/status.svg?path=packages/typescript-node"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?path=packages/typescript-node&type=dev" title="devDependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/dev-status.svg?path=packages/typescript-node"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?path=packages/typescript-node&type=peer" title="peerDependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/peer-status.svg?path=packages/typescript-node"/></a>
 </p>
 
 Convert typescript to a node friendly JS file (with minification).
@@ -54,9 +54,9 @@ gulp.task('build',
 ## @hopin/wbt-ts-browser
 
 <p align=center>
-  <a href="https://david-dm.org/gauntface/@hopin/wbt-ts-browser" title="dependencies status"><img src="https://david-dm.org/gauntface/@hopin/wbt-ts-browser/status.svg"/></a>
-  <a href="https://david-dm.org/gauntface/@hopin/wbt-ts-browser?type=dev" title="devDependencies status"><img src="https://david-dm.org/gauntface/@hopin/wbt-ts-browser/dev-status.svg"/></a>
-  <a href="https://david-dm.org/gauntface/@hopin/wbt-ts-browser?type=peer" title="peerDependencies status"><img src="https://david-dm.org/gauntface/@hopin/wbt-ts-browser/peer-status.svg"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?path=packages/typescript-browser-module" title="dependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/status.svg?path=packages/typescript-browser-module"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?path=packages/typescript-browser-module&type=dev" title="devDependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/dev-status.svg?path=packages/typescript-browser-module"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?path=packages/typescript-browser-module&type=peer" title="peerDependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/peer-status.svg?path=packages/typescript-browser-module"/></a>
 </p>
 
 Convert typescript to a browser friendly JS file (with minification).
@@ -91,9 +91,9 @@ gulp.task('build',
 ## @hopin/wbt-css
 
 <p align=center>
-  <a href="https://david-dm.org/gauntface/@hopin/wbt-css" title="dependencies status"><img src="https://david-dm.org/gauntface/@hopin/wbt-css/status.svg"/></a>
-  <a href="https://david-dm.org/gauntface/@hopin/wbt-css?type=dev" title="devDependencies status"><img src="https://david-dm.org/gauntface/@hopin/wbt-css/dev-status.svg"/></a>
-  <a href="https://david-dm.org/gauntface/@hopin/wbt-css?type=peer" title="peerDependencies status"><img src="https://david-dm.org/gauntface/@hopin/wbt-css/peer-status.svg"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?path=packages/css" title="dependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/status.svg?path=packages/css"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?path=packages/css&type=dev" title="devDependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/dev-status.svg?path=packages/css"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?path=packages/css&type=peer" title="peerDependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/peer-status.svg?path=packages/css"/></a>
 </p>
 
 Convert modern CSS to an older, optimised CSS file (with minification).
