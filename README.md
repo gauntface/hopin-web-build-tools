@@ -1,9 +1,25 @@
-# hopin-web-build-tools
-A set of build functions / tools used for hopin web projects
+<h1  align="center">@hopin/wbt-*</h1>
+
+<p align="center">
+  <a href="https://travis-ci.org/gauntface/hopin-web-build-tools"><img src="https://travis-ci.org/gauntface/hopin-web-build-tools.svg?branch=master" alt="Travis Build Status" /></a>
+  <a href="https://coveralls.io/github/gauntface/hopin-web-build-tools?branch=master"><img src="https://coveralls.io/repos/github/gauntface/hopin-web-build-tools/badge.svg?branch=master" alt="Coverage Status" /></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools" title="dependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/status.svg"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?type=dev" title="devDependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/dev-status.svg"/></a>
+  <a href="https://david-dm.org/gauntface/hopin-web-build-tools?type=peer" title="peerDependencies status"><img src="https://david-dm.org/gauntface/hopin-web-build-tools/peer-status.svg"/></a>
+</p>
+
+<p align="center">
+`hopin-web-build-tools` is a set of build functions used for hopin web projects.
+</p>
+
+
+<p align="center">
+<img alt="Simpsons Build" src="https://media.giphy.com/media/xT5LMsbnMnCR0DjeE0/giphy.gif" />
+</p>
 
 ## @hopin/wbt-ts-node
 
-Convert typescript to a node friendly JS file.
+Convert typescript to a node friendly JS file (with minification).
 
 ### Install
 
@@ -27,7 +43,69 @@ setConfig(src, dst);
 gulp.task('build',
   gulp.series(
     'clean',
-    () => tsNode.build()
+    tsNode.gulpBuild()
+  )
+);
+```
+
+## @hopin/wbt-ts-browser
+
+Convert typescript to a browser friendly JS file (with minification).
+
+### Install
+
+```
+npm install --save-dev @hopin/wbt-ts-browser
+```
+
+### Usage
+
+```
+const path = require('path');
+const gulp = require('gulp');
+const {setConfig} = require('@hopin/wbt-config');
+const tsBrowser = require('@hopin/wbt-ts-browser'); 
+
+const src = path.join(__dirname, 'src');
+const dst = path.join(__dirname, 'build');
+
+setConfig(src, dst);
+
+gulp.task('build',
+  gulp.series(
+    'clean',
+    tsBrowser.gulpBuild()
+  )
+);
+```
+
+## @hopin/wbt-css
+
+Convert modern CSS to an older, optimised CSS file (with minification).
+
+### Install
+
+```
+npm install --save-dev @hopin/wbt-css
+```
+
+### Usage
+
+```
+const path = require('path');
+const gulp = require('gulp');
+const {setConfig} = require('@hopin/wbt-config');
+const css = require('@hopin/wbt-css'); 
+
+const src = path.join(__dirname, 'src');
+const dst = path.join(__dirname, 'build');
+
+setConfig(src, dst);
+
+gulp.task('build',
+  gulp.series(
+    'clean',
+    css.gulpBuild()
   )
 );
 ```
