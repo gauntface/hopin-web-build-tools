@@ -17,11 +17,13 @@ function build(overrides, importPaths) {
         const pathsToCheck = [
           path.join(basedir, id),
         ];
+
         if (importPaths && importPaths.length > 0) {
           for (const p of importPaths) {
             pathsToCheck.push(path.join(p, id));
           }
         }
+
         for (const p of pathsToCheck) {
           try {
             await fs.access(p);
@@ -30,7 +32,7 @@ function build(overrides, importPaths) {
             // NOOP
           }
         }
-        return null;
+        throw new Error(`Unable to find import '${id}'`);
       }
     }),
     cssnext({
@@ -41,10 +43,14 @@ function build(overrides, importPaths) {
     }),
   ];
 
-  const stream = gulp.src(path.posix.join(config.src, '**', '*.css'))
-  .pipe(postcss(processors))
-  .pipe(gulp.dest(config.dst));
-  return gulpStreamToPromise(stream);
+  return new Promise(function (resolve, reject) {
+    gulp.src(path.posix.join(config.src, '**', '*.css'))
+      .pipe(
+        postcss(processors).on('error', reject)
+      )
+      .pipe(gulp.dest(config.dst))
+      .on('end', resolve);
+  });
 }
 
 function gulpBuild(overrides, importPaths) {

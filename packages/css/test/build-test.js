@@ -5,14 +5,11 @@ const {test} = require('ava');
 const fs = require('fs-extra');
 const {setConfig} = require('@hopin/wbt-config');
 
-const {build} = require('../src');
+const {build, gulpBuild} = require('../src');
 
 const mkdtemp = promisify(fs.mkdtemp);
 
-// TODO: Add example of no name with error
-// TODO: Add example of gulp build
-
-test('should build css files using default config', async (t) => {
+test.serial('should build css files using default config', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'working-project');
 	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-css'));
 	setConfig(srcDir, dstDir);
@@ -21,40 +18,57 @@ test('should build css files using default config', async (t) => {
         path.join(srcDir, 'static'),
     ]);	
 
-	const expectedDstFiles = [
-		path.join(dstDir, 'index.css'),
-    ];
-	for (const dstFile of expectedDstFiles) {
+	const expectedDstFiles = {
+		[path.join(dstDir, 'index.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
+	}
+	for (const dstFile of Object.keys(expectedDstFiles)) {
 		try {
 			await fs.access(dstFile);
+			const buffer = await fs.readFile(dstFile);
+			const contents = buffer.toString();
+			t.deepEqual(contents, expectedDstFiles[dstFile]);
 		} catch (err) {
 			t.fail(`Unable to read file: ${dstFile}`)
 		}
     }
-    t.pass();
 });
 
-/* 
-test('should build typescript files using custom config', async (t) => {
-	const srcDir = path.join(__dirname, 'static', 'working-project');
-	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-node'));
+test.serial('should build css files where the import fails', async (t) => {
+	const srcDir = path.join(__dirname, 'static', 'error-project');
+	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-css'));
 	setConfig(srcDir, dstDir);
 
-	const report = await build('examplename', {src: 'nest', dst: 'nest'});	
-	
-	t.deepEqual(report.srcFiles, [
-		path.join(srcDir, 'nest', 'nested-file.ts'),
-	]);
+	try {
+		await build();
+		t.fail('Expected build() to thrown an error');
+	} catch (err) {
+		t.deepEqual(err.message, `Unable to find import './doesnt-exist.css'`);
+	}
+});
 
-	const expectedDstFiles = [
-		path.join(dstDir, 'nest', 'nested-file.js'),
-	];
-	for (const dstFile of expectedDstFiles) {
+test.serial('should build css files using default config', async (t) => {
+	const srcDir = path.join(__dirname, 'static', 'working-project');
+	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-css'));
+	setConfig(srcDir, dstDir);
+
+	const buildFn = gulpBuild({}, [
+		path.join(srcDir, 'static'),
+	]);
+	t.deepEqual(buildFn.displayName, '@hopin/wbt-css');
+
+	await buildFn();	
+
+	const expectedDstFiles = {
+		[path.join(dstDir, 'index.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
+	}
+	for (const dstFile of Object.keys(expectedDstFiles)) {
 		try {
 			await fs.access(dstFile);
+			const buffer = await fs.readFile(dstFile);
+			const contents = buffer.toString();
+			t.deepEqual(contents, expectedDstFiles[dstFile]);
 		} catch (err) {
 			t.fail(`Unable to read file: ${dstFile}`)
 		}
-	}
+    }
 });
-*/

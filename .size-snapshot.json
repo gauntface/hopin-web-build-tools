@@ -1,0 +1,72 @@
+{
+  "/tmp/wbt-ts-nodevY6w7X/nest/nested-file.js": {
+    "bundled": 40,
+    "minified": 40,
+    "gzipped": 60
+  },
+  "/tmp/wbt-ts-nodeDTn7dl/cli.js": {
+    "bundled": 32,
+    "minified": 32,
+    "gzipped": 52
+  },
+  "/tmp/wbt-ts-nodeDTn7dl/nest/nested-file.js": {
+    "bundled": 40,
+    "minified": 40,
+    "gzipped": 60
+  },
+  "/tmp/wbt-ts-nodepouPWn/cli.js": {
+    "bundled": 32,
+    "minified": 32,
+    "gzipped": 52
+  },
+  "/tmp/wbt-ts-nodepouPWn/nest/nested-file.js": {
+    "bundled": 40,
+    "minified": 40,
+    "gzipped": 60
+  },
+  "/tmp/wbt-ts-nodepouPWn/toplevel-file.js": {
+    "bundled": 173,
+    "minified": 173,
+    "gzipped": 146
+  },
+  "/tmp/wbt-ts-nodezEltXv/cli.js": {
+    "bundled": 32,
+    "minified": 32,
+    "gzipped": 52
+  },
+  "/tmp/wbt-ts-nodezEltXv/nest/nested-file.js": {
+    "bundled": 40,
+    "minified": 40,
+    "gzipped": 60
+  },
+  "/tmp/wbt-ts-nodezEltXv/toplevel-file.js": {
+    "bundled": 173,
+    "minified": 173,
+    "gzipped": 146
+  },
+  "/tmp/wbt-ts-nodeFG86IB/cli.js": {
+    "bundled": 32,
+    "minified": 32,
+    "gzipped": 52
+  },
+  "/tmp/wbt-ts-nodeFG86IB/nest/nested-file.js": {
+    "bundled": 40,
+    "minified": 40,
+    "gzipped": 60
+  },
+  "/tmp/wbt-ts-nodeOfXboo/cli.js": {
+    "bundled": 32,
+    "minified": 32,
+    "gzipped": 52
+  },
+  "/tmp/wbt-ts-nodeOfXboo/nest/nested-file.js": {
+    "bundled": 40,
+    "minified": 40,
+    "gzipped": 60
+  },
+  "/tmp/wbt-ts-nodeOfXboo/toplevel-file.js": {
+    "bundled": 173,
+    "minified": 173,
+    "gzipped": 146
+  }
+}
