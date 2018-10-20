@@ -55,11 +55,7 @@ async function runTS(logger, outputModule, overrides = {}) {
   
       tscOptions.push(srcFile);
       logger.debug(`Running command: 'tsc ${tscOptions.join(' ')}'`);
-      const result = await spawn(logger, tsCompilerPath, tscOptions);
-      if (result.code != 0) {
-        logger.warn(result.stdout.split('\\n').join('\n'))
-        logger.warn(result.stderr.split('\\n').join('\n'))
-      }
+      await spawn(logger, tsCompilerPath, tscOptions);
     }).catch((err) => {
       logger.error(`Unable to build '${srcFile}' with tsc.`);
       throw err
@@ -81,7 +77,7 @@ const minifyJS = async function(logger, outputType, name, overrides = {}) {
     case 'browser': {
       format = 'iife';
       if (!name) {
-        throw new Error('You must provide a name for generatin browser bundle.');
+        throw new Error('You must provide a name for generating browser bundles.');
       }
       break;
     }
@@ -90,23 +86,25 @@ const minifyJS = async function(logger, outputType, name, overrides = {}) {
       break;
     }
     default: {
-      throw new Error(`Unknown minify output type: ${outputType}`);
+      throw new Error(`Unknown minify output type: '${outputType}'`);
     }
   }
 
   logger.debug(`Minify source : ${path.relative(process.cwd(), config.dst)}`);
   logger.debug(`Minify dest   : ${path.relative(process.cwd(), config.dst)}`);
 
-  const globPattern = path.posix.join(config.dst, '**', '*.js');
-  const ignoreUnderscorePrefixPattern = path.posix.join(config.dst, '**', '_*.js');
-  const srcFiles = await glob(globPattern, {
+  const globPattern = path.posix.join('**', '*.js');
+  const ignoreUnderscorePrefixPattern = path.posix.join('**', '_*.js');
+  const srcFiles = await glob('*.js', {
     strict: true,
+    cwd: config.dst,
+    absolute: true,
     ignore: [ignoreUnderscorePrefixPattern]
   });
 
   logger.debug(`Minifying the following JavaScript files for the browser:`);
   srcFiles.forEach((file) => logger.debug(`    ${path.relative(process.cwd(), file)}`));
-
+  
   let promiseChain = Promise.resolve();
   srcFiles.forEach(async (srcFile) => {
     promiseChain = promiseChain.then(async () => {
@@ -133,13 +131,14 @@ const minifyJS = async function(logger, outputType, name, overrides = {}) {
         sourcemap: true,
         file: srcFile,
       };
+
       const bundle = await rollup.rollup(inputOpts);
   
       // or write the bundle to disk
       await bundle.write(outputOptions);
     }).catch((err) => {
-      logger.error(`Unable to minify '${srcFile}' with rollup.`);
-      throw err
+      logger.error(`Unable to minify '${srcFile}' with rollup: ${err}`);
+      throw new Error(`Unable to minify '${srcFile}' with rollup: ${err.message}`);
     });
   });
 

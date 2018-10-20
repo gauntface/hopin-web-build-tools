@@ -9,9 +9,6 @@ const {build} = require('../src');
 
 const mkdtemp = promisify(fs.mkdtemp);
 
-// TODO: Add example of no name with error
-// TODO: Add example of gulp build
-
 test('should build typescript files using default config', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'working-project');
 	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-browser'));
@@ -58,4 +55,17 @@ test('should build typescript files using custom config', async (t) => {
 			t.fail(`Unable to read file: ${dstFile}`)
 		}
 	}
+});
+
+test('should throw and error if no name is passed in', async (t) => {
+	const srcDir = path.join(__dirname, 'static', 'working-project');
+	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-browser'));
+	setConfig(srcDir, dstDir);
+
+	try {
+		await build();
+		t.fail('Expected error from build()');
+	} catch (err) {
+		t.deepEqual(err.message, 'You must provide a name for generating browser bundles.');
+	}	
 });
