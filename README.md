@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="https://travis-ci.com/gauntface/hopin-web-build-tools"><img src="https://travis-ci.com/gauntface/hopin-web-build-tools.svg?branch=master" alt="Travis Build Status" /></a>
-  <a href="https://coveralls.io/github/gauntface/hopin-web-build-tools?branch=master"><img src="https://coveralls.io/repos/github/gauntface/hopin-web-build-tools/badge.svg?branch=master" alt="Coverage Status" /></a>
+  <a href="https://coveralls.io/github/gauntface/hopin-web-build-tools?branch=master"><img src="https://img.shields.io/coveralls/github/gauntface/hopin-web-build-tools.svg" alt="Coverage Status" /></a>
 </p>
 
 <p align="center">
