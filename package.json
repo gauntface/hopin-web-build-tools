@@ -28,7 +28,7 @@
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
-    "@types/node": "10.12.5",
+    "@types/node": "10.12.6",
     "ava": "0.25.0",
     "coveralls": "3.0.2",
     "express": "4.16.4",
