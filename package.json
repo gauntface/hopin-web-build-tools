@@ -33,7 +33,7 @@
     "coveralls": "3.0.2",
     "express": "4.16.4",
     "fs-extra": "7.0.1",
-    "lerna": "3.5.0",
+    "lerna": "3.5.1",
     "nyc": "13.1.0",
     "puppeteer": "1.10.0",
     "rollup": "0.67.3",
