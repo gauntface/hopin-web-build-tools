@@ -83,7 +83,7 @@ setConfig(src, dst);
 gulp.task('build',
   gulp.series(
     'clean',
-    tsBrowser.gulpBuild()
+    tsBrowser.gulpBuild(// TODO: Add a browser library name)
   )
 );
 ```
