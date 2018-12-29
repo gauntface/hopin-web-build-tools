@@ -88,6 +88,24 @@ gulp.task('build',
 );
 ```
 
+If using node modules, you'll want to include the rollup plugins to bundle the modules into your library:
+
+```javascript
+gulp.task('build',
+  gulp.series(
+    'clean',
+    tsBrowser.gulpBuild(// TODO: Add a browser library name, {
+        rollupPlugins: [
+          commonjs(),
+          resolve({
+            browser: true,
+          }),
+        ],
+      })
+  )
+);
+```
+
 ## @hopin/wbt-css
 
 <p align=center>
