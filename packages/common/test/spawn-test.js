@@ -1,4 +1,4 @@
-const {test} = require('ava');
+const test = require('ava');
 const sinon = require('sinon');
 const childProcess = require('child_process');
 
@@ -116,7 +116,7 @@ test.serial('should reject on a non-zero exit code', async (t) => {
   }
 });
 
-test.serial('should reject on a non-zero exit code', async (t) => {
+test.serial('should reject on error event', async (t) => {
   const eventMap = {};
 
   const setupPromise = new Promise((resolve) => {

@@ -1,7 +1,7 @@
 const {promisify} = require('util');
 const path = require('path');
 const os = require('os');
-const {test} = require('ava');
+const test = require('ava');
 const fs = require('fs-extra');
 const {setConfig} = require('@hopin/wbt-config');
 
@@ -46,7 +46,7 @@ test.serial('should build css files where the import fails', async (t) => {
 	}
 });
 
-test.serial('should build css files using default config', async (t) => {
+test.serial('should gulp build css files using default config', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'working-project');
 	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-css'));
 	setConfig(srcDir, dstDir);
