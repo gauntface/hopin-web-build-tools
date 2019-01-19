@@ -1,5 +1,5 @@
 const path = require('path');
-const {test} = require('ava');
+const test = require('ava');
 const puppeteer = require('puppeteer');
 const fs = require('fs-extra');
 const {setConfig} = require('@hopin/wbt-config');
