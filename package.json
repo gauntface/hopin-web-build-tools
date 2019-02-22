@@ -30,7 +30,7 @@
   "devDependencies": {
     "@types/node": "10.12.24",
     "ava": "1.2.1",
-    "coveralls": "3.0.2",
+    "coveralls": "3.0.3",
     "express": "4.16.4",
     "fs-extra": "7.0.1",
     "lerna": "3.13.0",
