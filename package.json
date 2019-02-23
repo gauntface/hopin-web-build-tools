@@ -36,7 +36,7 @@
     "lerna": "3.13.0",
     "nyc": "13.3.0",
     "puppeteer": "1.12.2",
-    "rollup": "1.2.2",
+    "rollup": "1.2.3",
     "rollup-plugin-size-snapshot": "0.8.0",
     "sinon": "7.2.4"
   }
