@@ -34,7 +34,7 @@
     "express": "4.16.4",
     "fs-extra": "7.0.1",
     "lerna": "3.13.2",
-    "nyc": "13.3.0",
+    "nyc": "14.0.0",
     "puppeteer": "1.14.0",
     "rollup": "1.10.0",
     "rollup-plugin-size-snapshot": "0.8.0",
