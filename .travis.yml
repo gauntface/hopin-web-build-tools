@@ -7,8 +7,8 @@ cache:
     - "node_modules"
 
 node_js:
-  - "8"
-  - "10"
+  - "node"  # Run the latest version of node
+  - "lts/*" # Run the latest LTS version of node
 
 script:
 - npm run bootstrap
