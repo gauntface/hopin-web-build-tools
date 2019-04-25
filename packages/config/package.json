@@ -3,8 +3,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@hopin/wbt-common": "^0.0.17",
-    "@hopin/logger": "^2.0.0"
+    "@hopin/logger": "^2.0.0",
+    "@hopin/wbt-common": "^0.0.18"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,5 @@
   "author": "gauntface",
   "license": "Apache-2.0",
   "main": "./src/index.js",
-  "version": "0.0.17"
+  "version": "0.0.18"
 }

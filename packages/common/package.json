@@ -2,8 +2,6 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gauntface/hopin-web-build-tools.git"
@@ -17,5 +15,5 @@
   "author": "gauntface",
   "license": "Apache-2.0",
   "main": "./src/index.js",
-  "version": "0.0.17"
+  "version": "0.0.18"
 }
