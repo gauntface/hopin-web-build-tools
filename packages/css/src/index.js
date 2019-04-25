@@ -2,7 +2,7 @@ const {getConfig} = require('@hopin/wbt-config');
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
 const atImport = require('postcss-import');
-const cssnext = require('postcss-cssnext');
+const csspresetenv = require('postcss-preset-env');
 const cssnano = require('cssnano');
 const path = require('path');
 const gulpStreamToPromise = require('gulp-stream-to-promise');
@@ -35,7 +35,7 @@ function build(overrides, importPaths) {
         throw new Error(`Unable to find import '${id}'`);
       }
     }),
-    cssnext({
+    csspresetenv({
       warnForDuplicates: false,
     }),
     cssnano({

@@ -6,7 +6,7 @@
     "@hopin/logger": "^2.0.0",
     "@hopin/wbt-config": "^0.0.17",
     "@hopin/wbt-ts-shared": "^0.0.17",
-    "@types/node": "^10.7.1",
+    "@types/node": "^11.13.7",
     "rollup-plugin-hashbang": "^2.0.0"
   },
   "repository": {

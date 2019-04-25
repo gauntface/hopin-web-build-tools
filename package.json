@@ -24,7 +24,7 @@
   "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "test": "nyc ava ./packages/*/test/*-test.js --verbose",
+    "test": "npm run bootstrap && nyc ava ./packages/*/test/*-test.js --verbose",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
