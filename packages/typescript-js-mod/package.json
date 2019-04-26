@@ -1,0 +1,26 @@
+{
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@hopin/logger": "^2.0.0",
+    "@hopin/wbt-config": "^0.0.18",
+    "@hopin/wbt-ts-shared": "^0.0.18",
+    "@types/node": "^11.13.7",
+    "terser": "^3.17.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauntface/hopin-web-build-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gauntface/hopin-web-build-tools/issues"
+  },
+  "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
+  "name": "@hopin/wbt-ts-js-mod",
+  "description": "A set of methods to make building web projects easier.",
+  "author": "gauntface",
+  "license": "Apache-2.0",
+  "main": "./src/index.js",
+  "version": "0.0.18"
+}

@@ -3,3 +3,4 @@ lerna-debug.log
 tmp/
 .nyc_output/
 coverage/
+.size-snapshot.json
