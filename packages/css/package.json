@@ -3,7 +3,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@hopin/wbt-config": "^0.0.18",
+    "@hopin/wbt-config": "^0.0.19",
     "@types/node": "^10.7.1",
     "cssnano": "^4.1.4",
     "fs-extra": "^7.0.0",
@@ -26,5 +26,5 @@
   "author": "gauntface",
   "license": "Apache-2.0",
   "main": "./src/index.js",
-  "version": "0.0.18"
+  "version": "0.0.19"
 }
