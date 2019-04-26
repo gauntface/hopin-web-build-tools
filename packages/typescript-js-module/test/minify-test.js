@@ -11,7 +11,7 @@ const mkdtemp = promisify(fs.mkdtemp);
 
 test('should handle errors from terser', async (t) => {
     const srcFile = path.join(__dirname, 'static', 'minify-examples', 'error-file.js');
-    const tmpDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-js-mod'));
+    const tmpDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-js-module'));
     const dstFile = path.join(tmpDir, 'error-file.js');
     await fs.copy(srcFile, dstFile);
 
@@ -30,7 +30,7 @@ test('should handle errors from terser', async (t) => {
 
 test('should handle warnings from terser', async (t) => {
     const srcFile = path.join(__dirname, 'static', 'minify-examples', 'warnings-file.js');
-    const tmpDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-js-mod'));
+    const tmpDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-js-module'));
     const dstFile = path.join(tmpDir, 'warnings-file.js');
     await fs.copy(srcFile, dstFile);
 
