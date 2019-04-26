@@ -5,19 +5,16 @@ const test = require('ava');
 const fs = require('fs-extra');
 const {setConfig} = require('@hopin/wbt-config');
 
-const {gulpBuild} = require('../src');
+const {build} = require('../src');
 
 const mkdtemp = promisify(fs.mkdtemp);
 
 test('should build typescript files using default config', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'working-project');
-	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-js-mod'));
+	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-js-module'));
 	setConfig(srcDir, dstDir);
 
-    const buildFn = gulpBuild('examplename');
-    t.deepEqual(buildFn.displayName, '@hopin/wbt-ts-js-mod');
-    
-	const report = await buildFn();	
+	const report = await build('examplename');	
 	
 	t.deepEqual(report.srcFiles, [
 		path.join(srcDir, 'nest', 'nested-file.ts'),
@@ -27,6 +24,29 @@ test('should build typescript files using default config', async (t) => {
 	const expectedDstFiles = [
 		path.join(dstDir, 'nest', 'nested-file.js'),
 		path.join(dstDir, 'toplevel-file.js'),
+	];
+	for (const dstFile of expectedDstFiles) {
+		try {
+			await fs.access(dstFile);
+		} catch (err) {
+			t.fail(`Unable to read file: ${dstFile}`)
+		}
+	}
+});
+
+test('should build typescript files using custom config', async (t) => {
+	const srcDir = path.join(__dirname, 'static', 'working-project');
+	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-ts-js-module'));
+	setConfig(srcDir, dstDir);
+
+	const report = await build({src: 'nest', dst: 'nest'});	
+	
+	t.deepEqual(report.srcFiles, [
+		path.join(srcDir, 'nest', 'nested-file.ts'),
+	]);
+
+	const expectedDstFiles = [
+		path.join(dstDir, 'nest', 'nested-file.js'),
 	];
 	for (const dstFile of expectedDstFiles) {
 		try {

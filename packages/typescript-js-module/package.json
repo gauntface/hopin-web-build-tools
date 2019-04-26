@@ -17,7 +17,7 @@
     "url": "https://github.com/gauntface/hopin-web-build-tools/issues"
   },
   "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
-  "name": "@hopin/wbt-ts-js-mod",
+  "name": "@hopin/wbt-ts-js-module",
   "description": "A set of methods to make building web projects easier.",
   "author": "gauntface",
   "license": "Apache-2.0",

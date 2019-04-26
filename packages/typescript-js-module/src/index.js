@@ -4,7 +4,7 @@ const {Logger} = require('@hopin/logger');
 const {minifyJS} = require('./minify');
 
 const logger = new Logger();
-logger.setPrefix('[@hopin/wbt-ts-js-mod]');
+logger.setPrefix('[@hopin/wbt-ts-js-module]');
 
 async function build(overrides) {
   // TODO: Build this to temp
@@ -18,7 +18,7 @@ async function build(overrides) {
 
 function gulpBuild(name, overrides) {
   const func = () => build(name, overrides)
-  func.displayName = `@hopin/wbt-ts-js-mod`;
+  func.displayName = `@hopin/wbt-ts-js-module`;
   return func
 }
 
