@@ -4,8 +4,8 @@
   },
   "dependencies": {
     "@hopin/logger": "^2.0.0",
-    "@hopin/wbt-config": "^0.0.19",
-    "@hopin/wbt-ts-shared": "^0.0.19",
+    "@hopin/wbt-config": "^0.0.20",
+    "@hopin/wbt-ts-shared": "^0.0.20",
     "@types/node": "^11.13.7",
     "terser": "^4.0.0"
   },
@@ -22,5 +22,5 @@
   "author": "gauntface",
   "license": "Apache-2.0",
   "main": "./src/index.js",
-  "version": "0.0.19"
+  "version": "0.0.20"
 }
