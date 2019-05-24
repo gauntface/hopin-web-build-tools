@@ -95,7 +95,7 @@ const minifyJS = async function(logger, outputType, name, overrides = {}) {
 
   const globPattern = path.posix.join('**', '*.js');
   const ignoreUnderscorePrefixPattern = path.posix.join('**', '_*.js');
-  const srcFiles = await glob('*.js', {
+  const srcFiles = await glob(globPattern, {
     strict: true,
     cwd: config.dst,
     absolute: true,
