@@ -14,9 +14,11 @@ test.serial('should build css files using default config', async (t) => {
 	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-css'));
 	setConfig(srcDir, dstDir);
 
-	await build({}, [
-        path.join(srcDir, 'static'),
-    ]);	
+	await build({}, {
+		importPaths: [
+        	path.join(srcDir, 'static'),
+		],
+	});	
 
 	const expectedDstFiles = {
 		[path.join(dstDir, 'index.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
@@ -51,9 +53,11 @@ test.serial('should gulp build css files using default config', async (t) => {
 	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-css'));
 	setConfig(srcDir, dstDir);
 
-	const buildFn = gulpBuild({}, [
-		path.join(srcDir, 'static'),
-	]);
+	const buildFn = gulpBuild({}, {
+		importPaths: [
+			path.join(srcDir, 'static'),
+		],
+	});
 	t.deepEqual(buildFn.displayName, '@hopin/wbt-css');
 
 	await buildFn();	

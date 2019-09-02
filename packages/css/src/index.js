@@ -8,8 +8,11 @@ const path = require('path');
 const gulpStreamToPromise = require('gulp-stream-to-promise');
 const fs = require('fs-extra');
 
-function build(overrides, importPaths) {
+function build(overrides, opts) {
   const config = getConfig(overrides);
+  if (!opts) {
+    opts = {}
+  }
 
   const processors = [
     atImport({
@@ -18,8 +21,8 @@ function build(overrides, importPaths) {
           path.join(basedir, id),
         ];
 
-        if (importPaths && importPaths.length > 0) {
-          for (const p of importPaths) {
+        if (opts.importPaths && opts.importPaths.length > 0) {
+          for (const p of opts.importPaths) {
             pathsToCheck.push(path.join(p, id));
           }
         }
@@ -37,6 +40,7 @@ function build(overrides, importPaths) {
     }),
     csspresetenv({
       warnForDuplicates: false,
+      preserve: opts.preserve,
     }),
     cssnano({
       discardUnused: false,
@@ -53,8 +57,8 @@ function build(overrides, importPaths) {
   });
 }
 
-function gulpBuild(overrides, importPaths) {
-  const func = () => build(overrides, importPaths)
+function gulpBuild(overrides, opts) {
+  const func = () => build(overrides, opts)
   func.displayName = `@hopin/wbt-css`;
   return func
 }
