@@ -5,7 +5,6 @@ const atImport = require('postcss-import');
 const csspresetenv = require('postcss-preset-env');
 const cssnano = require('cssnano');
 const path = require('path');
-const gulpStreamToPromise = require('gulp-stream-to-promise');
 const fs = require('fs-extra');
 
 function build(overrides, opts) {
