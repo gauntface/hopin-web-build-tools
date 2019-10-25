@@ -1,5 +1,5 @@
-// TODO: Run lerna bootstrap
+const gulp = require('gulp');
 
-// TODO: Build TS 
-
-// TODO: Run tests
+gulp.task('build', gulp.series(
+    () => Promise.resolve().then(() => console.log('TODO: Build TS'))
+));

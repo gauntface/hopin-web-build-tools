@@ -2,6 +2,9 @@
     "publishConfig": {
       "access": "public"
     },
+    "scripts": {
+      "build": "gulp build"
+    },
     "dependencies": {
       "@hopin/wbt-config": "^0.0.20",
       "fs-extra": "^8.0.0",
