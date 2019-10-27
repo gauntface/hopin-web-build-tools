@@ -8,6 +8,10 @@
     "url": "git+https://github.com/gauntface/hopin-web-build-tools.git"
   },
   "nyc": {
+    "extension": [
+      ".ts",
+      ".js"
+    ],
     "reporter": [
       "text",
       "html"
@@ -24,7 +28,8 @@
   "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "test": "npm run bootstrap && nyc ava ./packages/*/test/*-test.js --verbose",
+    "build": "npm run bootstrap && lerna run build",
+    "test": "npm run build && nyc ava ./packages/*/test/*-test.js --verbose",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
