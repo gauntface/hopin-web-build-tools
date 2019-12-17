@@ -34,7 +34,7 @@
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
-    "@types/fs-extra": "^8.0.1",
+    "@types/fs-extra": "8.0.1",
     "@types/node": "10.12.24",
     "ava": "2.3.0",
     "coveralls": "3.0.3",
