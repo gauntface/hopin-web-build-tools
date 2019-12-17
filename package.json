@@ -29,7 +29,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "npm run bootstrap && lerna run build",
-    "publish": "lerna publish",
+    "publish": "npm login && lerna publish",
     "test": "npm run build && nyc ava ./packages/*/test/*-test.js --verbose",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
