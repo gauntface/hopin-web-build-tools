@@ -11,6 +11,9 @@ node_js:
   # - "node"  # Run the latest version of node
   - "lts/*" # Run the latest LTS version of node
 
+install:
+- npm install
+
 script:
 - npm run bootstrap
 - npm run test
