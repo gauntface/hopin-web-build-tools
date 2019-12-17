@@ -44,10 +44,13 @@ async function runTS(logger, outputModule, overrides = {}) {
         '--noImplicitAny', 'true',
         '--removeComments', 'true',
         '--preserveConstEnums', 'true',
-        '--sourceMap', 'true',
         '--rootDir', overrides.rootDir ? overrides.rootDir : config.src,
         '--outDir', config.dst,
       ];
+
+      if (overrides.sourcemap == null || overrides.sourcemap) {
+        tscOptions.push('--sourceMap', 'true')
+      }
   
       if (overrides.flags) {
         tscOptions.push(...overrides.flags);
@@ -105,16 +108,24 @@ const minifyJS = async function(logger, outputType, name, overrides = {}) {
   logger.debug(`Minifying the following JavaScript files for the browser:`);
   srcFiles.forEach((file) => logger.debug(`    ${path.relative(process.cwd(), file)}`));
   
+  let includeSourcemaps = false;
+  if (overrides.sourcemap == null || overrides.sourcemap) {
+    includeSourcemaps = true;
+  }
   let promiseChain = Promise.resolve();
   srcFiles.forEach(async (srcFile) => {
     promiseChain = promiseChain.then(async () => {
-      const plugins = [
+      const plugins = [];
+      if (includeSourcemaps) {
         // This module enabled Rollup to *ingest* a sourcemap to apply
         // further manipulations
-        sourcemapPlugin(),
-        // Minify the bundled JS
-        terser(),        
-      ];
+        plugins.push(sourcemapPlugin())
+      }
+
+      // Minify the bundled JS
+      plugins.push(terser({
+        sourcemap: includeSourcemaps,
+      }))
 
       if (overrides.rollupPlugins) {
         // Any additional plugins
@@ -128,7 +139,7 @@ const minifyJS = async function(logger, outputType, name, overrides = {}) {
       const outputOptions = {
         format,
         name,
-        sourcemap: true,
+        sourcemap: includeSourcemaps,
         file: srcFile,
       };
 

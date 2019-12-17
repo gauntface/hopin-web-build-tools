@@ -2,19 +2,20 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import { parse, NodeType, Node, HTMLElement } from 'node-html-parser';
 
+import {Path} from './_assets';
 import {logger} from './utils/_logger';
 import {glob} from './utils/_glob';
 
 export class AssetConstructor {
   private dirs: Array<string>;
 
-  private inlineStyles: Array<string>;
-  private syncStyles: Array<string>;
-  private asyncStyles: Array<string>;
+  private inlineStyles: Array<Path>;
+  private syncStyles: Array<Path>;
+  private asyncStyles: Array<Path>;
 
-  private inlineScripts: Array<string>;
-  private syncScripts: Array<string>;
-  private asyncScripts: Array<string>;
+  private inlineScripts: Array<Path>;
+  private syncScripts: Array<Path>;
+  private asyncScripts: Array<Path>;
 
   constructor(dirs: Array<string>) {
     if (!dirs || dirs.length == 0) {
@@ -35,31 +36,31 @@ export class AssetConstructor {
     await this.processChildren(node);
   }
 
-  getInlineStyles(): Array<string> {
+  getInlineStyles(): Array<Path> {
     return this.inlineStyles;
   }
 
-  getSyncStyles(): Array<string> {
+  getSyncStyles(): Array<Path> {
     return this.syncStyles;
   }
 
-  getAsyncStyles(): Array<string> {
+  getAsyncStyles(): Array<Path> {
     return this.asyncStyles;
   }
 
-  getInlineScripts(): Array<string> {
+  getInlineScripts(): Array<Path> {
     return this.inlineScripts;
   }
 
-  getSyncScripts(): Array<string> {
+  getSyncScripts(): Array<Path> {
     return this.syncScripts;
   }
 
-  getAsyncScripts(): Array<string> {
+  getAsyncScripts(): Array<Path> {
     return this.asyncScripts;
   }
 
-  private async performGlobs(assetName: string, ext: string, assetLists: {inline: Array<string>, sync: Array<string>, async: Array<string>}) {
+  private async performGlobs(assetName: string, ext: string, assetLists: {inline: Array<Path>, sync: Array<Path>, async: Array<Path>}) {
     for (const d of this.dirs) {
       const inlineGlob = path.join(d, '**', `${assetName}*(-inline).${ext}`);
       const syncGlob = path.join(d, '**', `${assetName}-sync.${ext}`);
@@ -68,7 +69,10 @@ export class AssetConstructor {
       try {
         const results = await glob(inlineGlob);
         for (const r of results) {
-          assetLists.inline.push(r);
+          assetLists.inline.push({
+            fullPath: r,
+            relativePath: path.join(path.sep, path.relative(d, r)),
+          });
         }
       } catch (err) {
         logger.log(`Failed to glob for ${inlineGlob}:`, err);
@@ -77,7 +81,10 @@ export class AssetConstructor {
       try {
         const results = await glob(syncGlob);
         for (const r of results) {
-          assetLists.sync.push(r);
+          assetLists.sync.push({
+            fullPath: r,
+            relativePath: path.join(path.sep, path.relative(d, r)),
+          });
         }
       } catch (err) {
         logger.error(`Failed to glob for ${syncGlob}:`, err);
@@ -86,7 +93,10 @@ export class AssetConstructor {
       try {
         const results = await glob(asyncGlob);
         for (const r of results) {
-          assetLists.async.push(r);
+          assetLists.async.push({
+            fullPath: r,
+            relativePath: path.join(path.sep, path.relative(d, r)),
+          });
         }
       } catch (err) {
         logger.error(`Failed to glob for ${asyncGlob}:`, err);
