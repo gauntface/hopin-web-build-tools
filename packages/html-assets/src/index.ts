@@ -59,3 +59,7 @@ export async function processFiles(htmlPaths: string|Array<string>, assetPaths: 
     await fs.writeFile(h, newContents);
   }
 }
+
+export function gulpProcessFiles(htmlPaths: string|Array<string>, assetPaths: string|Array<string>): () => Promise<void> {
+  return () => processFiles(htmlPaths, assetPaths);
+}

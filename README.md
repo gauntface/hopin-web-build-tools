@@ -165,7 +165,7 @@ const cssAndJSDir = path.join(__dirname, 'build');
 
 gulp.task('build',
   gulp.series(
-    html.processFiles(htmlDir, cssAndJSDir),
+    html.gulpProcessFiles(htmlDir, cssAndJSDir),
   )
 );
 ```
