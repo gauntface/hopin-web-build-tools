@@ -142,3 +142,30 @@ gulp.task('build',
   )
 );
 ```
+
+## @hopin/wbt-html-assets
+
+Inject CSS and JS required to render a page based on the HTML tags, attributes and classnames used.
+
+### Install
+
+```
+npm install --save-dev @hopin/wbt-html-assets
+```
+
+### Usage
+
+```
+const path = require('path');
+const gulp = require('gulp');
+const html = require('@hopin/wbt-html-assets'); 
+
+const htmlDir = path.join(__dirname, 'build');
+const cssAndJSDir = path.join(__dirname, 'build');
+
+gulp.task('build',
+  gulp.series(
+    html.processFiles(htmlDir, cssAndJSDir),
+  )
+);
+```
