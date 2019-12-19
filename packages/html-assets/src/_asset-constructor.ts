@@ -72,9 +72,11 @@ export class AssetConstructor {
       try {
         const results = await glob(inlineGlob);
         for (const r of results) {
+          const relativePath = path.join(path.sep, path.relative(d, r));
+          logger.log(`Found inline file: ${relativePath}`);
           assetLists.inline.push({
             fullPath: r,
-            relativePath: path.join(path.sep, path.relative(d, r)),
+            relativePath: relativePath,
           });
         }
       } catch (err) {
@@ -84,9 +86,11 @@ export class AssetConstructor {
       try {
         const results = await glob(syncGlob);
         for (const r of results) {
+          const relativePath = path.join(path.sep, path.relative(d, r));
+          logger.log(`Found sync file: ${relativePath}`);
           assetLists.sync.push({
             fullPath: r,
-            relativePath: path.join(path.sep, path.relative(d, r)),
+            relativePath: relativePath,
           });
         }
       } catch (err) {
@@ -96,9 +100,11 @@ export class AssetConstructor {
       try {
         const results = await glob(asyncGlob);
         for (const r of results) {
+          const relativePath = path.join(path.sep, path.relative(d, r));
+          logger.log(`Found async file: ${relativePath}`);
           assetLists.async.push({
             fullPath: r,
-            relativePath: path.join(path.sep, path.relative(d, r)),
+            relativePath: relativePath,
           });
         }
       } catch (err) {
