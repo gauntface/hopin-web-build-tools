@@ -10,15 +10,15 @@ export {injectAssets} from './_asset-injector';
 
 export async function getAssetsForHTMLFile(htmlPath: string, assetPaths: string|Array<string>): Promise<Assets> {
   const f = await fs.readFile(htmlPath);
-  return getAssetsForHTML(f.toString(), assetPaths);
+  return getAssetsForHTML(htmlPath, f.toString(), assetPaths);
 }
 
-export async function getAssetsForHTML(html: string, assetPaths: string|Array<string>): Promise<Assets> {
+export async function getAssetsForHTML(id: string, html: string, assetPaths: string|Array<string>): Promise<Assets> {
   if (!Array.isArray(assetPaths)) {
     assetPaths = [assetPaths];
   }
   const ac = new AssetConstructor(assetPaths);
-  await ac.processHTML(html);
+  await ac.processHTML(id, html);
   return {
     html: html,
     inlineStylesPath: ac.getInlineStyles(),
@@ -58,4 +58,8 @@ export async function processFiles(htmlPaths: string|Array<string>, assetPaths: 
     const newContents = await injectAssets(assets);
     await fs.writeFile(h, newContents);
   }
+}
+
+export function gulpProcessFiles(htmlPaths: string|Array<string>, assetPaths: string|Array<string>): () => Promise<void> {
+  return () => processFiles(htmlPaths, assetPaths);
 }

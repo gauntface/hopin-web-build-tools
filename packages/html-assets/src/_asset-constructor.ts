@@ -31,9 +31,12 @@ export class AssetConstructor {
     this.asyncScripts = [];
   }
 
-  async processHTML(html: string) {
+  // The ID variable is just used to identify the log output.
+  async processHTML(id: string, html: string) {
+    logger.group(`Processing HTML file: ${id}`);
     const node = parse(html);
     await this.processChildren(node);
+    logger.groupEnd();
   }
 
   getInlineStyles(): Array<Path> {
@@ -75,7 +78,7 @@ export class AssetConstructor {
           });
         }
       } catch (err) {
-        logger.log(`Failed to glob for ${inlineGlob}:`, err);
+        logger.warn(`Failed to glob for ${inlineGlob}:`, err);
       }
 
       try {
