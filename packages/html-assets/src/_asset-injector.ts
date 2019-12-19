@@ -2,7 +2,6 @@ import * as fs from 'fs-extra';
 import * as path from 'path';
 import * as cheerio from 'cheerio';
 import {Assets, Path} from './_assets';
-import { parse, NodeType, Node, HTMLElement } from 'node-html-parser';
 
 export async function injectAssets(assets: Assets): Promise<string> {
   const $ = cheerio.load(assets.html);
@@ -16,7 +15,7 @@ export async function injectAssets(assets: Assets): Promise<string> {
     await addAsyncStyles($, assets.asyncStylesPath);
     await addAsyncScripts($, assets.asyncScriptsPath);
   }
-  return $.html();
+  return $.root().html();
 }
 
 async function addInlineStyles($: CheerioStatic, styles: Array<Path>): Promise<void> {

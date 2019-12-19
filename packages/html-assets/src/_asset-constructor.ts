@@ -1,6 +1,6 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { parse, NodeType, Node, HTMLElement } from 'node-html-parser';
+import * as cheerio from 'cheerio';
 
 import {Path} from './_assets';
 import {logger} from './utils/_logger';
@@ -34,8 +34,10 @@ export class AssetConstructor {
   // The ID variable is just used to identify the log output.
   async processHTML(id: string, html: string) {
     logger.group(`Processing HTML file: ${id}`);
-    const node = parse(html);
-    await this.processChildren(node);
+    const $ = cheerio.load(html);
+    for (let i = 0; i < $.root().children().length; i++) {
+      await this.processElement($.root().children().get(i));
+    }
     logger.groupEnd();
   }
 
@@ -141,35 +143,39 @@ export class AssetConstructor {
     });
   }
 
-  private async processChildren(e: Node) {
-    for (const c of e.childNodes) {
-      await this.processElement(c);
+  private async processChildren(node: CheerioElement) {
+    if (!node.childNodes) {
+      return
+    }
+    
+    for (const n of node.childNodes) {
+      await this.processElement(n);
     }
   }
 
-  private async processElement(e: Node) {
+  private async processElement(node: CheerioElement) {
     const promises: Array<Promise<void>> = []; 
-    if (e.nodeType == NodeType.ELEMENT_NODE) {
-      const html = e as HTMLElement
-      // Add assets for HTML tag
-      promises.push(this.addAssetsForTag(html.tagName));
+    // Add assets for HTML tag
+    promises.push(this.addAssetsForTag(node.tagName));
 
-      for (const key of Object.keys(html.attributes)) {
+    if (node.attribs) {
+      for (const key of Object.keys(node.attribs)) {
         if (key === 'class') {
           // Add assets for class name
-          promises.push(this.addAssetsForClass(html.attributes[key]));
+          promises.push(this.addAssetsForClass(node.attribs[key]));
         } else {
           // Add assets for atttribute key
           promises.push(this.addAssetsForAttributeKey(key));
         }
       }
-      switch(html.tagName) {
-        case 'svg': {
-          break;
-        }
-        default: {
-          promises.push(this.processChildren(e));
-        }
+    }
+
+    switch(node.tagName) {
+      case 'svg': {
+        break;
+      }
+      default: {
+        promises.push(this.processChildren(node));
       }
     }
     await Promise.all(promises);
