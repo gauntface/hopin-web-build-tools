@@ -31,6 +31,7 @@ export class AssetConstructor {
     this.asyncScripts = [];
   }
 
+  // The ID variable is just used to identify the log output.
   async processHTML(id: string, html: string) {
     logger.group(`Processing HTML file: ${id}`);
     const node = parse(html);
