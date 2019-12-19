@@ -169,19 +169,19 @@ export class AssetConstructor {
   }
 
   private async addAssetsForTag(tag: string) {
-    logger.log(`Adding assets for tag ${tag}`);
+    logger.log(`Searching for assets for tag ${tag}`);
     await this.addStyles(tag);
     await this.addScripts(tag);
   }
 
   private async addAssetsForClass(classname: string) {
-    logger.log(`Adding assets for class ${classname}`);
+    logger.log(`Searching for assets for class ${classname}`);
     await this.addStyles(classname);
     await this.addScripts(classname);
   }
 
   private async addAssetsForAttributeKey(key: string) {
-    logger.log(`Adding assets for attribute ${key}`);
+    logger.log(`Searching for assets for attribute ${key}`);
     await this.addStyles(key);
     await this.addScripts(key);
   }
