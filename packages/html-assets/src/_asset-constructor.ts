@@ -73,6 +73,10 @@ export class AssetConstructor {
         const results = await glob(inlineGlob);
         for (const r of results) {
           const relativePath = path.join(path.sep, path.relative(d, r));
+          if (hasPath(assetLists.inline, r)) {
+            continue;
+          }
+          
           logger.log(`Found inline file: ${relativePath}`);
           assetLists.inline.push({
             fullPath: r,
@@ -173,4 +177,13 @@ export class AssetConstructor {
     await this.addStyles(key);
     await this.addScripts(key);
   }
+}
+
+function hasPath(allPaths: Array<Path>, fullPath: string) {
+  for (const p of allPaths) {
+    if (p.fullPath == fullPath) {
+      return true;
+    }
+  }
+  return false;
 }
