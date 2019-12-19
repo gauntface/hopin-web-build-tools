@@ -163,7 +163,14 @@ export class AssetConstructor {
           promises.push(this.addAssetsForAttributeKey(key));
         }
       }
-      promises.push(this.processChildren(e));
+      switch(html.tagName) {
+        case 'svg': {
+          break;
+        }
+        default: {
+          promises.push(this.processChildren(e));
+        }
+      }
     }
     await Promise.all(promises);
   }
