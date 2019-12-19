@@ -1,29 +1,29 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import * as cheerio from 'cheerio';
 import {Assets, Path} from './_assets';
-import { parse, NodeType, Node, HTMLElement } from 'node-html-parser';
 
 export async function injectAssets(assets: Assets): Promise<string> {
-  let node = parse(assets.html) as HTMLElement;
+  const $ = cheerio.load(assets.html);
   if (assets.inlineStylesPath.length > 0) {
-    await addInlineStyles(node, assets.inlineStylesPath);
-    await addSyncStyles(node, assets.syncStylesPath);
+    await addInlineStyles($, assets.inlineStylesPath);
+    await addSyncStyles($, assets.syncStylesPath);
 
-    await addInlineScripts(node, assets.inlineScriptsPath);
-    await addSyncScripts(node, assets.syncScriptsPath);
+    await addInlineScripts($, assets.inlineScriptsPath);
+    await addSyncScripts($, assets.syncScriptsPath);
 
-    await addAsyncStyles(node, assets.asyncStylesPath);
-    await addAsyncScripts(node, assets.asyncScriptsPath);
+    await addAsyncStyles($, assets.asyncStylesPath);
+    await addAsyncScripts($, assets.asyncScriptsPath);
   }
-  return node.toString();
+  return $.root().html();
 }
 
-async function addInlineStyles(node: HTMLElement, styles: Array<Path>): Promise<void> {
+async function addInlineStyles($: CheerioStatic, styles: Array<Path>): Promise<void> {
   if (styles.length == 0) {
     return
   }
 
-  const headElement = node.querySelector('head');
+  const headElement = $('head');
   if (headElement == null) {
     return
   }
@@ -33,17 +33,16 @@ async function addInlineStyles(node: HTMLElement, styles: Array<Path>): Promise<
     return
   }
 
-  const styleTag = new HTMLElement('style', {});
-  styleTag.set_content(files.join(' '));
-  headElement.appendChild(styleTag);
+  const styleTag = $(`<style>${files.join(' ')}</style>`);
+  headElement.append(styleTag);
 }
 
-async function addInlineScripts(node: HTMLElement, scripts: Array<Path>): Promise<void> {
+async function addInlineScripts($: CheerioStatic, scripts: Array<Path>): Promise<void> {
   if (scripts.length == 0) {
     return
   }
 
-  const bodyElement = node.querySelector('body');
+  const bodyElement = $('body');
   if (bodyElement == null) {
     return
   }
@@ -54,50 +53,49 @@ async function addInlineScripts(node: HTMLElement, scripts: Array<Path>): Promis
   }
 
   for (const f of files) {
-    const scriptTag = new HTMLElement('script', {});
-    scriptTag.set_content(f);
-    bodyElement.appendChild(scriptTag);
+    const scriptTag = $(`<script>${f}</script>`);
+    bodyElement.append(scriptTag);
   }
 }
 
-async function addSyncStyles(node: HTMLElement, styles: Array<Path>): Promise<void> {
+async function addSyncStyles($: CheerioStatic, styles: Array<Path>): Promise<void> {
   if (styles.length == 0) {
     return
   }
 
-  const headElement = node.querySelector('head');
+  const headElement = $('head');
   if (headElement == null) {
     return
   }
 
   for (const s of styles) {
-    const linkTag = new HTMLElement('link', {}, `rel="stylesheet" type="text/css" href="${s.relativePath}"`);
-    headElement.appendChild(linkTag);
+    const linkTag = $(`<link rel="stylesheet" type="text/css" href="${s.relativePath}" />`);
+    headElement.append(linkTag);
   }
 }
 
-async function addSyncScripts(node: HTMLElement, scripts: Array<Path>): Promise<void> {
+async function addSyncScripts($: CheerioStatic, scripts: Array<Path>): Promise<void> {
   if (scripts.length == 0) {
     return
   }
 
-  const bodyElement = node.querySelector('body');
+  const bodyElement = $('body');
   if (bodyElement == null) {
     return
   }
 
   for (const s of scripts) {
-    const scriptTag = new HTMLElement('script', {}, `src="${s.relativePath}"`);
-    bodyElement.appendChild(scriptTag);
+    const scriptTag = $(`<script src="${s.relativePath}"></script>`);
+    bodyElement.append(scriptTag);
   }
 }
 
-async function addAsyncStyles(node: HTMLElement, styles: Array<Path>): Promise<void> {
+async function addAsyncStyles($: CheerioStatic, styles: Array<Path>): Promise<void> {
   if (styles.length == 0) {
     return
   }
 
-  const bodyElement = node.querySelector('body');
+  const bodyElement = $('body');
   if (bodyElement == null) {
     return
   }
@@ -105,20 +103,20 @@ async function addAsyncStyles(node: HTMLElement, styles: Array<Path>): Promise<v
   const parsedStyles = styles.map((s) => `'${s.relativePath}'`);
   const manualJS = `const a = [${parsedStyles.join(', ')}];`;
   const asyncJSScript = await fs.readFile(path.join(__dirname, 'browser-assets', 'async-css-script.js'));
-  const scriptTag = new HTMLElement('script', {});
-  scriptTag.set_content(`${manualJS} ${asyncJSScript}`);
-  bodyElement.appendChild(scriptTag);
+  
+  const scriptTag = $(`<script>${manualJS} ${asyncJSScript}</script>`);
+  bodyElement.append(scriptTag);
 }
 
-async function addAsyncScripts(node: HTMLElement, scripts: Array<Path>): Promise<void> {
-  const bodyElement = node.querySelector('body');
+async function addAsyncScripts($: CheerioStatic, scripts: Array<Path>): Promise<void> {
+  const bodyElement = $('body');
   if (bodyElement == null) {
     return
   }
 
   for (const s of scripts) {
-    const scriptTag = new HTMLElement('script', {}, `async defer src="${s.relativePath}"`);
-    bodyElement.appendChild(scriptTag);
+    const scriptTag = $(`<script async defer src="${s.relativePath}"></script>`);
+    bodyElement.append(scriptTag);
   }
 }
 

@@ -34,6 +34,7 @@
     "report-coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.15",
     "@types/fs-extra": "8.0.1",
     "@types/node": "10.12.24",
     "ava": "2.3.0",
