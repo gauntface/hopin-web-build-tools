@@ -33,12 +33,10 @@ export class AssetConstructor {
 
   // The ID variable is just used to identify the log output.
   async processHTML(id: string, html: string) {
-    logger.group(`Processing HTML file: ${id}`);
     const $ = cheerio.load(html);
     for (let i = 0; i < $.root().children().length; i++) {
       await this.processElement($.root().children().get(i));
     }
-    logger.groupEnd();
   }
 
   getInlineStyles(): Array<Path> {
@@ -79,7 +77,6 @@ export class AssetConstructor {
           }
 
           const relativePath = path.join(path.sep, path.relative(d, r));
-          logger.log(`Found inline file: ${relativePath}`);
           assetLists.inline.push({
             fullPath: r,
             relativePath: relativePath,
@@ -97,7 +94,6 @@ export class AssetConstructor {
           }
 
           const relativePath = path.join(path.sep, path.relative(d, r));
-          logger.log(`Found sync file: ${relativePath}`);
           assetLists.sync.push({
             fullPath: r,
             relativePath: relativePath,
@@ -115,7 +111,6 @@ export class AssetConstructor {
           }
 
           const relativePath = path.join(path.sep, path.relative(d, r));
-          logger.log(`Found async file: ${relativePath}`);
           assetLists.async.push({
             fullPath: r,
             relativePath: relativePath,
@@ -182,19 +177,16 @@ export class AssetConstructor {
   }
 
   private async addAssetsForTag(tag: string) {
-    logger.log(`Searching for assets for tag ${tag}`);
     await this.addStyles(tag);
     await this.addScripts(tag);
   }
 
   private async addAssetsForClass(classname: string) {
-    logger.log(`Searching for assets for class ${classname}`);
     await this.addStyles(classname);
     await this.addScripts(classname);
   }
 
   private async addAssetsForAttributeKey(key: string) {
-    logger.log(`Searching for assets for attribute ${key}`);
     await this.addStyles(key);
     await this.addScripts(key);
   }
