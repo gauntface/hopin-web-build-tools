@@ -123,7 +123,7 @@ export class AssetConstructor {
   }
 
   private async addStyles(assetName: string) {
-    await this.performGlobs(assetName, 'css', {
+    await this.performGlobs(assetName, 'min.css', {
       inline: this.inlineStyles,
       sync: this.syncStyles,
       async: this.asyncStyles,

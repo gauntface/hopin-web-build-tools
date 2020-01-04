@@ -19,58 +19,58 @@ test('find html assets', async (t) => {
 	
 	t.deepEqual(assets.inlineStylesPath, [
 		{
-			fullPath: path.join(srcDir, 'css', 'html', 'p-inline.css'),
-			relativePath: path.join(path.sep, 'css', 'html', 'p-inline.css'),
+			fullPath: path.join(srcDir, 'css', 'html', 'p-inline.min.css'),
+			relativePath: path.join(path.sep, 'css', 'html', 'p-inline.min.css'),
 		},
 		{
-			fullPath: path.join(srcDir, 'css', 'html', 'p.css'),
-			relativePath: path.join(path.sep, 'css', 'html', 'p.css'),
+			fullPath: path.join(srcDir, 'css', 'html', 'p.min.css'),
+			relativePath: path.join(path.sep, 'css', 'html', 'p.min.css'),
 		},
 		{
-			fullPath: path.join(srcDir, 'components', 'c-example-inline.css'),
-			relativePath: path.join(path.sep, 'components', 'c-example-inline.css'),
+			fullPath: path.join(srcDir, 'components', 'c-example-inline.min.css'),
+			relativePath: path.join(path.sep, 'components', 'c-example-inline.min.css'),
 		},
 		{
-			fullPath: path.join(srcDir, 'components', 'c-example.css'),
-			relativePath: path.join(path.sep, 'components', 'c-example.css'),
+			fullPath: path.join(srcDir, 'components', 'c-example.min.css'),
+			relativePath: path.join(path.sep, 'components', 'c-example.min.css'),
 		},
 		{
-			fullPath: path.join(srcDir, 'attribute-example-inline.css'),
-			relativePath: path.join(path.sep, 'attribute-example-inline.css'),
+			fullPath: path.join(srcDir, 'attribute-example-inline.min.css'),
+			relativePath: path.join(path.sep, 'attribute-example-inline.min.css'),
 		},
 		{
-			fullPath: path.join(srcDir, 'attribute-example.css'),
-			relativePath: path.join(path.sep, 'attribute-example.css'),
+			fullPath: path.join(srcDir, 'attribute-example.min.css'),
+			relativePath: path.join(path.sep, 'attribute-example.min.css'),
 		},
 	]);
 
 	t.deepEqual(assets.syncStylesPath, [
 		{
-			fullPath: path.join(srcDir, 'css', 'html', 'p-sync.css'),
-			relativePath: path.join(path.sep, 'css', 'html', 'p-sync.css'),
+			fullPath: path.join(srcDir, 'css', 'html', 'p-sync.min.css'),
+			relativePath: path.join(path.sep, 'css', 'html', 'p-sync.min.css'),
 		},
 		{
-			fullPath: path.join(srcDir, 'components', 'c-example-sync.css'),
-			relativePath: path.join(path.sep, 'components', 'c-example-sync.css'),
+			fullPath: path.join(srcDir, 'components', 'c-example-sync.min.css'),
+			relativePath: path.join(path.sep, 'components', 'c-example-sync.min.css'),
 		},
 		{
-			fullPath: path.join(srcDir, 'attribute-example-sync.css'),
-			relativePath: path.join(path.sep, 'attribute-example-sync.css'),
+			fullPath: path.join(srcDir, 'attribute-example-sync.min.css'),
+			relativePath: path.join(path.sep, 'attribute-example-sync.min.css'),
 		},
 	]);
 
 	t.deepEqual(assets.asyncStylesPath, [
 	{
-		fullPath: path.join(srcDir, 'css', 'html', 'p-async.css'),
-		relativePath: path.join(path.sep, 'css', 'html', 'p-async.css'),
+		fullPath: path.join(srcDir, 'css', 'html', 'p-async.min.css'),
+		relativePath: path.join(path.sep, 'css', 'html', 'p-async.min.css'),
 	},
 	{
-		fullPath: path.join(srcDir, 'components', 'c-example-async.css'),
-		relativePath: path.join(path.sep, 'components', 'c-example-async.css'),
+		fullPath: path.join(srcDir, 'components', 'c-example-async.min.css'),
+		relativePath: path.join(path.sep, 'components', 'c-example-async.min.css'),
 	},
 	{
-		fullPath: path.join(srcDir, 'attribute-example-async.css'),
-		relativePath: path.join(path.sep, 'attribute-example-async.css'),
+		fullPath: path.join(srcDir, 'attribute-example-async.min.css'),
+		relativePath: path.join(path.sep, 'attribute-example-async.min.css'),
 	},
 	]);
 

@@ -21,7 +21,7 @@ test.serial('should build css files using default config', async (t) => {
 	});	
 
 	const expectedDstFiles = {
-		[path.join(dstDir, 'index.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
+		[path.join(dstDir, 'index.min.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
 	}
 	for (const dstFile of Object.keys(expectedDstFiles)) {
 		try {
@@ -63,7 +63,7 @@ test.serial('should gulp build css files using default config', async (t) => {
 	await buildFn();	
 
 	const expectedDstFiles = {
-		[path.join(dstDir, 'index.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
+		[path.join(dstDir, 'index.min.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
 	}
 	for (const dstFile of Object.keys(expectedDstFiles)) {
 		try {

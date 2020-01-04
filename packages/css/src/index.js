@@ -1,6 +1,7 @@
 const {getConfig} = require('@hopin/wbt-config');
 const gulp = require('gulp');
 const postcss = require('gulp-postcss');
+const rename = require('gulp-rename');
 const atImport = require('postcss-import');
 const csspresetenv = require('postcss-preset-env');
 const cssnano = require('cssnano');
@@ -46,11 +47,17 @@ function build(overrides, opts) {
     }),
   ];
 
+  const renameopts = {};
+  if (!opts.preserve) {
+    renameopts.extname = '.min.css';
+  } 
+
   return new Promise(function (resolve, reject) {
     gulp.src(path.posix.join(config.src, '**', '*.css'))
       .pipe(
         postcss(processors).on('error', reject)
       )
+      .pipe(rename(renameopts))
       .pipe(gulp.dest(config.dst))
       .on('end', resolve);
   });
