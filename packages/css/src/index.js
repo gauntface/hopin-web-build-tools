@@ -8,11 +8,13 @@ const cssnano = require('cssnano');
 const path = require('path');
 const fs = require('fs-extra');
 
+const defaultOpts = {
+  preserve: true,
+};
+
 function build(overrides, opts) {
   const config = getConfig(overrides);
-  if (!opts) {
-    opts = {}
-  }
+  opts = Object.assign(defaultOpts, opts)
 
   const processors = [
     atImport({
@@ -48,9 +50,11 @@ function build(overrides, opts) {
   ];
 
   const renameopts = {};
-  if (!opts.preserve) {
-    renameopts.extname = '.min.css';
-  } 
+  if (opts.preserve) {
+    renameopts.extname = '.css';
+  } else {
+    renameopts.extname = '.novars.css';
+  }
 
   return new Promise(function (resolve, reject) {
     gulp.src(path.posix.join(config.src, '**', '*.css'))
@@ -63,13 +67,26 @@ function build(overrides, opts) {
   });
 }
 
+function buildAll(overrides, opts) {
+  return build(overrides, Object.assign({}, opts, {preserve: true}))
+  .then(() => build(overrides, Object.assign({}, opts, {preserve: false})));
+}
+
 function gulpBuild(overrides, opts) {
   const func = () => build(overrides, opts)
   func.displayName = `@hopin/wbt-css`;
   return func
 }
 
+function gulpBuildAll(overrides, opts) {
+  const func = () => buildAll(overrides, opts)
+  func.displayName = `@hopin/wbt-css`;
+  return func
+}
+
 module.exports = {
   build,
+  buildAll,
   gulpBuild,
+  gulpBuildAll,
 };
