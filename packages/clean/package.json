@@ -1,0 +1,24 @@
+{
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@hopin/wbt-config": "0.0.29",
+    "fs-extra": "^8.1.0",
+    "gulp": "^4.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauntface/hopin-web-build-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gauntface/hopin-web-build-tools/issues"
+  },
+  "homepage": "https://github.com/gauntface/hopin-web-build-tools#readme",
+  "name": "@hopin/wbt-clean",
+  "description": "A set of methods to make building web projects easier.",
+  "author": "gauntface",
+  "license": "Apache-2.0",
+  "main": "./src/index.js",
+  "version": "0.0.29"
+}
