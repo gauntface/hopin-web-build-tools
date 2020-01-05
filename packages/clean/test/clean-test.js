@@ -12,6 +12,7 @@ const mkdtemp = promisify(fs.mkdtemp);
 test.serial('should clean files using default config', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'example');
 	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-clean'));
+	await fs.copy(srcDir, dstDir);
 	setConfig(srcDir, dstDir);
 
 	await clean({});	
@@ -20,9 +21,36 @@ test.serial('should clean files using default config', async (t) => {
   t.deepEqual(exists, false);
 });
 
+test.serial('should clean files using default config with extra values', async (t) => {
+	const srcDir = path.join(__dirname, 'static', 'example');
+	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-clean'));
+	await fs.copy(srcDir, dstDir);
+	setConfig(srcDir, dstDir);
+
+	const additionalDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-clean'));
+	await fs.copy(srcDir, additionalDir);
+
+	await clean({}, [additionalDir]);	
+
+  const exists = await fs.exists(dstDir)
+	t.deepEqual(exists, false);
+	
+	const additionalExists = await fs.exists(additionalDir)
+  t.deepEqual(additionalExists, false);
+});
+
+test.serial('should throw for non array additional paths', async (t) => {
+	try {
+		await clean({}, '');	
+	} catch (err) {
+		t.pass();
+	}
+});
+
 test.serial('should gulp build css files using default config', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'example');
 	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-clean'));
+	await fs.copy(srcDir, dstDir);
 	setConfig(srcDir, dstDir);
 
 	const cleanFn = gulpClean({});

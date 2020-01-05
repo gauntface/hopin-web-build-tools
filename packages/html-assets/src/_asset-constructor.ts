@@ -6,8 +6,16 @@ import {Path} from './_assets';
 import {logger} from './utils/_logger';
 import {glob} from './utils/_glob';
 
+export type ExtensionConfig = {
+  css?: string;
+  js?: string;
+}
+
 export class AssetConstructor {
   private dirs: Array<string>;
+  
+  private cssExt: string;
+  private jsExt: string;
 
   private inlineStyles: Array<Path>;
   private syncStyles: Array<Path>;
@@ -17,12 +25,19 @@ export class AssetConstructor {
   private syncScripts: Array<Path>;
   private asyncScripts: Array<Path>;
 
-  constructor(dirs: Array<string>) {
+  constructor(dirs: Array<string>, extensions?: ExtensionConfig) {
     if (!dirs || dirs.length == 0) {
       throw new Error('Directory is required');
     }
+    if (!extensions) {
+      extensions = {};
+    }
 
     this.dirs = dirs;
+
+    this.cssExt = extensions.css || 'css';
+    this.jsExt = extensions.js || 'js';
+
     this.inlineStyles = [];
     this.syncStyles = [];
     this.asyncStyles = [];
@@ -123,7 +138,7 @@ export class AssetConstructor {
   }
 
   private async addStyles(assetName: string) {
-    await this.performGlobs(assetName, 'min.css', {
+    await this.performGlobs(assetName, this.cssExt, {
       inline: this.inlineStyles,
       sync: this.syncStyles,
       async: this.asyncStyles,
@@ -131,7 +146,7 @@ export class AssetConstructor {
   }
 
   private async addScripts(assetName: string) {
-    await this.performGlobs(assetName, 'js', {
+    await this.performGlobs(assetName, this.jsExt, {
       inline: this.inlineScripts,
       sync: this.syncScripts,
       async: this.asyncScripts,

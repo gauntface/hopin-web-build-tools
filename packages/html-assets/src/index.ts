@@ -1,23 +1,24 @@
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import {glob} from "./utils/_glob";
-import { AssetConstructor } from "./_asset-constructor";
+import { AssetConstructor, ExtensionConfig} from "./_asset-constructor";
 import { injectAssets } from "./_asset-injector";
 import {Assets} from './_assets';
 
 export {Assets} from './_assets';
 export {injectAssets} from './_asset-injector';
+export {ExtensionConfig} from './_asset-constructor';
 
-export async function getAssetsForHTMLFile(htmlPath: string, assetPaths: string|Array<string>): Promise<Assets> {
+export async function getAssetsForHTMLFile(htmlPath: string, assetPaths: string|Array<string>, extensions?: ExtensionConfig): Promise<Assets> {
   const f = await fs.readFile(htmlPath);
-  return getAssetsForHTML(htmlPath, f.toString(), assetPaths);
+  return getAssetsForHTML(htmlPath, f.toString(), assetPaths, extensions);
 }
 
-export async function getAssetsForHTML(id: string, html: string, assetPaths: string|Array<string>): Promise<Assets> {
+export async function getAssetsForHTML(id: string, html: string, assetPaths: string|Array<string>, extensions?: ExtensionConfig): Promise<Assets> {
   if (!Array.isArray(assetPaths)) {
     assetPaths = [assetPaths];
   }
-  const ac = new AssetConstructor(assetPaths);
+  const ac = new AssetConstructor(assetPaths, extensions);
   await ac.processHTML(id, html);
   return {
     html: html,
@@ -31,17 +32,25 @@ export async function getAssetsForHTML(id: string, html: string, assetPaths: str
   }
 }
 
-export async function processFiles(htmlPaths: string|Array<string>, assetPaths: string|Array<string>) {
-  if (!Array.isArray(htmlPaths)) {
-    htmlPaths = [htmlPaths];
+export type Options = {
+  htmlPaths: string|Array<string>;
+  assetPaths: string|Array<string>;
+  extensions?: ExtensionConfig;
+};
+
+export async function processFiles(opts: Options) {
+  if (!Array.isArray(opts.htmlPaths)) {
+    opts.htmlPaths = [opts.htmlPaths];
   }
 
-  if (!Array.isArray(assetPaths)) {
-    assetPaths = [assetPaths];
+  if (!opts.assetPaths) {
+    opts.assetPaths = opts.htmlPaths
+  } else if (!Array.isArray(opts.assetPaths)) {
+    opts.assetPaths = [opts.assetPaths];
   }
 
   const htmlFiles: Array<string> = [];
-  for(const d of htmlPaths) {
+  for(const d of opts.htmlPaths) {
     const htmlGlob = path.join(d, '**', `*.html`);
     try {
       const results = await glob(htmlGlob);
@@ -54,12 +63,12 @@ export async function processFiles(htmlPaths: string|Array<string>, assetPaths: 
   }
 
   for (const h of htmlFiles) {
-    const assets = await getAssetsForHTMLFile(h, assetPaths);
+    const assets = await getAssetsForHTMLFile(h, opts.assetPaths, opts.extensions);
     const newContents = await injectAssets(assets);
     await fs.writeFile(h, newContents);
   }
 }
 
-export function gulpProcessFiles(htmlPaths: string|Array<string>, assetPaths: string|Array<string>): () => Promise<void> {
-  return () => processFiles(htmlPaths, assetPaths);
+export function gulpProcessFiles(opts: Options): () => Promise<void> {
+  return () => processFiles(opts);
 }

@@ -5,8 +5,12 @@ async function clean(overrides, additionalPaths) {
   const config = getConfig(overrides);
   
   const allPaths = [config.dst];
+  if (additionalPaths != null && !Array.isArray(additionalPaths)) {
+    throw new Error('@hopin/clean additional paths must be an array of strings');
+  }
+
   if (Array.isArray(additionalPaths)) {
-    allPaths.push(additionalPaths);
+    allPaths.push(...additionalPaths);
   }
 
   const allPromises = [];
