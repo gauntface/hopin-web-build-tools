@@ -4,6 +4,7 @@ import {glob} from "./utils/_glob";
 import { AssetConstructor, ExtensionConfig} from "./_asset-constructor";
 import { injectAssets } from "./_asset-injector";
 import {Assets} from './_assets';
+import { logger } from './utils/_logger';
 
 export {Assets} from './_assets';
 export {injectAssets} from './_asset-injector';
@@ -29,6 +30,10 @@ export async function getAssetsForHTML(id: string, html: string, assetPaths: str
     inlineScriptsPath: ac.getInlineScripts(),
     syncScriptsPath: ac.getSyncScripts(),
     asyncScriptsPath: ac.getAsyncScripts(),
+
+    tags: ac.getTags(),
+    classes: ac.getClasses(),
+    attributes: ac.getAttributes(),
   }
 }
 

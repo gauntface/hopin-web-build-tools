@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const test = require('ava');
 const path = require('path');
 const os = require('os');
-const {processFiles} = require('../build');
+const {processFiles, getAssetsForHTMLFile} = require('../build');
 
 test('only include single copy of tag class and attrib assets', async (t) => {
   const srcDir = path.join(__dirname, 'static', 'edge-cases');

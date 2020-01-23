@@ -13,4 +13,8 @@ export type Assets = {
   inlineScriptsPath: Array<Path>
   syncScriptsPath: Array<Path>
   asyncScriptsPath: Array<Path>
+
+  tags: Array<string>
+  classes: Array<string>
+  attributes: Array<string>
 }

@@ -25,6 +25,10 @@ export class AssetConstructor {
   private syncScripts: Array<Path>;
   private asyncScripts: Array<Path>;
 
+  private assetTags: Array<string>;
+  private assetClasses: Array<string>;
+  private assetAttributes: Array<string>;
+
   constructor(dirs: Array<string>, extensions?: ExtensionConfig) {
     if (!dirs || dirs.length == 0) {
       throw new Error('Directory is required');
@@ -44,6 +48,9 @@ export class AssetConstructor {
     this.inlineScripts = [];
     this.syncScripts = [];
     this.asyncScripts = [];
+    this.assetTags = [];
+    this.assetClasses = [];
+    this.assetAttributes = [];
   }
 
   // The ID variable is just used to identify the log output.
@@ -76,6 +83,18 @@ export class AssetConstructor {
 
   getAsyncScripts(): Array<Path> {
     return this.asyncScripts;
+  }
+
+  getTags(): Array<string> {
+    return this.assetTags;
+  }
+
+  getClasses(): Array<string> {
+    return this.assetClasses;
+  }
+
+  getAttributes(): Array<string> {
+    return this.assetAttributes;
   }
 
   private async performGlobs(assetName: string, ext: string, assetLists: {inline: Array<Path>, sync: Array<Path>, async: Array<Path>}) {
@@ -164,7 +183,12 @@ export class AssetConstructor {
   }
 
   private async processElement(node: CheerioElement) {
+    if (node.type === 'text') {
+      return
+    }
+
     const promises: Array<Promise<void>> = []; 
+    
     // Add assets for HTML tag
     promises.push(this.addAssetsForTag(node.tagName));
 
@@ -192,16 +216,22 @@ export class AssetConstructor {
   }
 
   private async addAssetsForTag(tag: string) {
+    this.assetTags.push(tag);
+
     await this.addStyles(tag);
     await this.addScripts(tag);
   }
 
   private async addAssetsForClass(classname: string) {
+    this.assetClasses.push(classname);
+
     await this.addStyles(classname);
     await this.addScripts(classname);
   }
 
   private async addAssetsForAttributeKey(key: string) {
+    this.assetAttributes.push(key);
+
     await this.addStyles(key);
     await this.addScripts(key);
   }
