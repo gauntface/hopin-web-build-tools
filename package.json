@@ -43,7 +43,7 @@
     "fs-extra": "8.1.0",
     "lerna": "3.20.2",
     "nyc": "15.0.0",
-    "puppeteer": "2.0.0",
+    "puppeteer": "2.1.0",
     "rollup": "1.30.0",
     "rollup-plugin-size-snapshot": "0.10.0",
     "sinon": "8.1.1"
