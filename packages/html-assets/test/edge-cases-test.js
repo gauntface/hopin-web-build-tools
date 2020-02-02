@@ -17,7 +17,7 @@ test('only include single copy of tag class and attrib assets', async (t) => {
   const processedContents = (await fs.readFile(indexPath)).toString();
   t.deepEqual(processedContents, `<html><head>
     <title>Example</title>
-  <style>/* p.css */ /* example-class.css */ /* example.css */</style></head>
+  <style>/* p.css */</style><style>/* example-class.css */</style><style>/* example.css */</style></head>
   <body>
     <p class="example-class" example="true">This is a test piece of html</p>
     <p class="example-class" example="true">Multiple tags, classes and attributes.</p>

@@ -33,8 +33,10 @@ async function addInlineStyles($: CheerioStatic, styles: Array<Path>): Promise<v
     return
   }
 
-  const styleTag = $(`<style>${files.join(' ')}</style>`);
-  headElement.append(styleTag);
+  for (const f of files) {
+    const styleTag = $(`<style>${f}</style>`);
+    headElement.append(styleTag);
+  }
 }
 
 async function addInlineScripts($: CheerioStatic, scripts: Array<Path>): Promise<void> {

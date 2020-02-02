@@ -17,7 +17,7 @@ test('add assets to file with default extensions', async (t) => {
   const processedContents = (await fs.readFile(indexPath)).toString();
   t.deepEqual(processedContents, `<html><head>
     <title>Example</title>
-  <style>/* attribute-example-inline.css */ /* attribute-example.css (Inline) */</style><link rel="stylesheet" type="text/css" href="/css/html/p-sync.css"><link rel="stylesheet" type="text/css" href="/components/c-example-sync.css"><link rel="stylesheet" type="text/css" href="/attribute-example-sync.css"></head>
+  <style>/* attribute-example-inline.css */</style><style>/* attribute-example.css (Inline) */</style><link rel="stylesheet" type="text/css" href="/css/html/p-sync.css"><link rel="stylesheet" type="text/css" href="/components/c-example-sync.css"><link rel="stylesheet" type="text/css" href="/attribute-example-sync.css"></head>
   <body>
     <p>This is a test piece of html</p>
 
@@ -44,7 +44,7 @@ test('add assets to file with custom extensions', async (t) => {
   const processedContents = (await fs.readFile(indexPath)).toString();
   t.deepEqual(processedContents, `<html><head>
     <title>Example</title>
-  <style>/* attribute-example-inline.min.css */ /* attribute-example.min.css (Inline) */</style><link rel="stylesheet" type="text/css" href="/css/html/p-sync.min.css"><link rel="stylesheet" type="text/css" href="/components/c-example-sync.min.css"><link rel="stylesheet" type="text/css" href="/attribute-example-sync.min.css"></head>
+  <style>/* attribute-example-inline.min.css */</style><style>/* attribute-example.min.css (Inline) */</style><link rel="stylesheet" type="text/css" href="/css/html/p-sync.min.css"><link rel="stylesheet" type="text/css" href="/components/c-example-sync.min.css"><link rel="stylesheet" type="text/css" href="/attribute-example-sync.min.css"></head>
   <body>
     <p>This is a test piece of html</p>
 
@@ -73,7 +73,7 @@ test('add assets to file via gulp function with default extensions', async (t) =
 
   t.deepEqual(processedContents, `<html><head>
     <title>Example</title>
-  <style>/* attribute-example-inline.css */ /* attribute-example.css (Inline) */</style><link rel="stylesheet" type="text/css" href="/css/html/p-sync.css"><link rel="stylesheet" type="text/css" href="/components/c-example-sync.css"><link rel="stylesheet" type="text/css" href="/attribute-example-sync.css"></head>
+  <style>/* attribute-example-inline.css */</style><style>/* attribute-example.css (Inline) */</style><link rel="stylesheet" type="text/css" href="/css/html/p-sync.css"><link rel="stylesheet" type="text/css" href="/components/c-example-sync.css"><link rel="stylesheet" type="text/css" href="/attribute-example-sync.css"></head>
   <body>
     <p>This is a test piece of html</p>
 
@@ -106,7 +106,7 @@ test('add assets to file via gulp function with custom extensions', async (t) =>
 
   t.deepEqual(processedContents, `<html><head>
     <title>Example</title>
-  <style>/* attribute-example-inline.min.css */ /* attribute-example.min.css (Inline) */</style><link rel="stylesheet" type="text/css" href="/css/html/p-sync.min.css"><link rel="stylesheet" type="text/css" href="/components/c-example-sync.min.css"><link rel="stylesheet" type="text/css" href="/attribute-example-sync.min.css"></head>
+  <style>/* attribute-example-inline.min.css */</style><style>/* attribute-example.min.css (Inline) */</style><link rel="stylesheet" type="text/css" href="/css/html/p-sync.min.css"><link rel="stylesheet" type="text/css" href="/components/c-example-sync.min.css"><link rel="stylesheet" type="text/css" href="/attribute-example-sync.min.css"></head>
   <body>
     <p>This is a test piece of html</p>
 

@@ -17,6 +17,23 @@ test('find html assets with default extensions', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'example');
   const assets = await getAssetsForHTMLFile(path.join(srcDir, 'index.html'), srcDir);  
 	
+	t.deepEqual(assets.tags, [
+		'html',
+		'head',
+		'title',
+		'body',
+		'p',
+		'div',
+	]);
+	t.deepEqual(assets.classes, [
+		'c-example',
+		'c-multi-class-example-1',
+		'c-multi-class-example-2',
+	]);
+	t.deepEqual(assets.attributes, [
+		'attribute-example',
+	]);
+
 	t.deepEqual(assets.inlineStylesPath, [
 		{
 			fullPath: path.join(srcDir, 'css', 'html', 'p-inline.css'),

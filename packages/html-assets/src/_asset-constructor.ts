@@ -183,7 +183,7 @@ export class AssetConstructor {
   }
 
   private async processElement(node: CheerioElement) {
-    if (node.type === 'text') {
+    if (node.type === 'text' || node.tagName === null) {
       return
     }
 
@@ -196,7 +196,15 @@ export class AssetConstructor {
       for (const key of Object.keys(node.attribs)) {
         if (key === 'class') {
           // Add assets for class name
-          promises.push(this.addAssetsForClass(node.attribs[key]));
+          const classString = node.attribs[key];
+          const classes = classString.split(' ')
+          for (const c of classes) {
+            if (!c) {
+              continue
+            }
+            
+            promises.push(this.addAssetsForClass(c));
+          }
         } else {
           // Add assets for atttribute key
           promises.push(this.addAssetsForAttributeKey(key));
@@ -216,6 +224,10 @@ export class AssetConstructor {
   }
 
   private async addAssetsForTag(tag: string) {
+    if (this.assetTags.includes(tag)) {
+      return
+    }
+
     this.assetTags.push(tag);
 
     await this.addStyles(tag);
@@ -223,6 +235,10 @@ export class AssetConstructor {
   }
 
   private async addAssetsForClass(classname: string) {
+    if (this.assetClasses.includes(classname)) {
+      return
+    }
+
     this.assetClasses.push(classname);
 
     await this.addStyles(classname);
@@ -230,6 +246,10 @@ export class AssetConstructor {
   }
 
   private async addAssetsForAttributeKey(key: string) {
+    if (this.assetAttributes.includes(key)) {
+      return
+    }
+
     this.assetAttributes.push(key);
 
     await this.addStyles(key);
