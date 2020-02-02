@@ -69,9 +69,6 @@ export async function processFiles(opts: Options) {
 
   for (const h of htmlFiles) {
     const assets = await getAssetsForHTMLFile(h, opts.assetPaths, opts.extensions);
-    console.log(`File: ${h}`);
-    console.log('Assets:', assets);
-    console.log('');
     const newContents = await injectAssets(assets);
     await fs.writeFile(h, newContents);
   }
