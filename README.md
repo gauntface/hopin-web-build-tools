@@ -1,7 +1,7 @@
 <h1  align="center">@hopin/wbt-*</h1>
 
 <p align="center">
-  <a href="https://travis-ci.com/gauntface/hopin-web-build-tools"><img src="https://travis-ci.com/gauntface/hopin-web-build-tools.svg?branch=master" alt="Travis Build Status" /></a>
+  <a href="https://travis-ci.com/gauntface/hopin-web-build-tools"><img src="https://github.com/gauntface/hopin-web-build-tools/workflows/Build%20and%20Publish/badge.svg" alt="Build and Publish Status" /></a>
   <a href="https://coveralls.io/github/gauntface/hopin-web-build-tools?branch=master"><img src="https://img.shields.io/coveralls/github/gauntface/hopin-web-build-tools.svg" alt="Coverage Status" /></a>
 </p>
 
@@ -166,6 +166,33 @@ const cssAndJSDir = path.join(__dirname, 'build');
 gulp.task('build',
   gulp.series(
     html.gulpProcessFiles(htmlDir, cssAndJSDir),
+  )
+);
+```
+
+## @hopin/wbt-clean
+
+Easily delete one or more directories.
+
+### Install
+
+```
+npm install --save-dev @hopin/wbt-clean
+```
+
+### Usage
+
+```
+const path = require('path');
+const gulp = require('gulp');
+const clean = require('@hopin/wbt-clean'); 
+
+const htmlDir = path.join(__dirname, 'build');
+const cssAndJSDir = path.join(__dirname, 'build');
+
+gulp.task('build',
+  gulp.series(
+    clean.gulpClean([htmlDir, cssAndJSDir]),
   )
 );
 ```
