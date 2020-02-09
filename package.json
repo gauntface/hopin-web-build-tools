@@ -14,7 +14,8 @@
     ],
     "reporter": [
       "text",
-      "html"
+      "html",
+      "lcov"
     ],
     "exclude": [
       "**/test/**/*"
@@ -29,23 +30,22 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "npm run bootstrap && lerna run build",
-    "publish": "npm login && lerna publish",
-    "test": "npm run build && nyc ava ./packages/*/test/*-test.js --verbose",
-    "report-coverage": "nyc report --reporter=text-lcov | coveralls"
+    "publish": "lerna publish",
+    "test": "npm run build && nyc ava ./packages/*/test/*-test.js --verbose"
   },
   "devDependencies": {
     "@types/cheerio": "0.22.16",
     "@types/fs-extra": "8.0.1",
-    "@types/node": "10.12.24",
-    "ava": "2.4.0",
+    "@types/node": "^13.7.0",
+    "ava": "^3.3.0",
     "coveralls": "3.0.9",
     "express": "4.17.1",
     "fs-extra": "8.1.0",
     "lerna": "3.20.2",
     "nyc": "15.0.0",
-    "puppeteer": "2.1.0",
+    "puppeteer": "^2.1.1",
     "rollup": "1.31.0",
-    "rollup-plugin-size-snapshot": "0.10.0",
+    "rollup-plugin-size-snapshot": "^0.11.0",
     "sinon": "8.1.1"
   }
 }

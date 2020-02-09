@@ -1,16 +1,8 @@
-const {getConfig} = require('@hopin/wbt-config');
 const fs = require('fs-extra');
 
-async function clean(overrides, additionalPaths) {
-  const config = getConfig(overrides);
-  
-  const allPaths = [config.dst];
-  if (additionalPaths != null && !Array.isArray(additionalPaths)) {
-    throw new Error('@hopin/clean additional paths must be an array of strings');
-  }
-
-  if (Array.isArray(additionalPaths)) {
-    allPaths.push(...additionalPaths);
+async function clean(allPaths) {  
+  if (allPaths != null && !Array.isArray(allPaths)) {
+    throw new Error('@hopin/clean paths must be an array of strings');
   }
 
   const allPromises = [];
