@@ -28,4 +28,4 @@ jobs:
       if: github.ref == 'refs/heads/master'
       run: |
         git stash
-        npm run publish -- --yes
+        npm run publish -- from-git --yes
