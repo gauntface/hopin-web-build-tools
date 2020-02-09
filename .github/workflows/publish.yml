@@ -1,0 +1,29 @@
+on: push
+name: Build and Publish
+jobs:
+  all:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install
+      run: npm install
+    - name: Bootstrap
+      run: npm run bootstrap
+    - name: Test
+      run: npm run test
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Authenticate with Registry
+      if: github.ref == 'refs/heads/master'
+      run: |
+        echo "registry=http://registry.npmjs.org/" >> .npmrc
+        echo "//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}" >> .npmrc
+        npm whoami
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    - name: Publish with Lerna
+      if: github.ref == 'refs/heads/master'
+      run: npm run publish -- --yes --message 'chore(release)'

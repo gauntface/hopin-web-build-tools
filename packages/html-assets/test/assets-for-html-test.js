@@ -10,7 +10,7 @@ test('error for empty assets array', async (t) => {
 	const srcDir = path.join(__dirname, 'static', 'example');
 	await t.throwsAsync(() => {
 		return getAssetsForHTMLFile(path.join(srcDir, 'index.html'), []);
-	}, 'Directory is required');
+	}, {message: 'Directory is required'});
 })
 
 test('find html assets with default extensions', async (t) => {
