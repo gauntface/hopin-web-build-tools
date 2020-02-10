@@ -28,8 +28,14 @@ jobs:
       if: github.ref == 'refs/heads/master'
       run: |
         git stash
+        git config --local user.email "hello@gaunt.dev"
+        git config --local user.name "gauntface"
         npm run version -- patch --yes
     - name: Publish with Lerna
       if: github.ref == 'refs/heads/master'
       run: |
-        npm run publish -- from-git --yes
+        npm run publish -- --yes
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
