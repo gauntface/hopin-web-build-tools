@@ -30,7 +30,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "npm run bootstrap && lerna run build",
-    "publish": "lerna version patch && lerna publish",
+    "version": "lerna version",
+    "publish": "lerna publish",
     "test": "npm run build && nyc ava ./packages/*/test/*-test.js --verbose --timeout=2m"
   },
   "devDependencies": {
