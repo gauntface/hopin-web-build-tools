@@ -2,10 +2,12 @@
   "packages": [
     "packages/*"
   ],
-  "version": "0.0.33",
+  "version": "0.0.34",
   "command": {
     "publish": {
-      "allowBranch": ["master"],
+      "allowBranch": [
+        "master"
+      ],
       "message": "chore(release): publish"
     }
   }
