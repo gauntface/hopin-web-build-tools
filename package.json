@@ -38,7 +38,7 @@
     "@types/cheerio": "0.22.16",
     "@types/fs-extra": "8.1.0",
     "@types/node": "13.7.4",
-    "ava": "3.3.0",
+    "ava": "3.4.0",
     "coveralls": "3.0.9",
     "express": "4.17.1",
     "fs-extra": "8.1.0",
