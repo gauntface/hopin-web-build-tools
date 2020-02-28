@@ -51,9 +51,9 @@ function build(overrides, opts) {
 
   const renameopts = {};
   if (opts.preserve) {
-    renameopts.extname = '.css';
+    renameopts.extname = '.dev.css';
   } else {
-    renameopts.extname = '.novars.css';
+    renameopts.extname = '.prod.css';
   }
 
   return new Promise(function (resolve, reject) {
