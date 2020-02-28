@@ -1,7 +1,7 @@
 <h1  align="center">@hopin/wbt-*</h1>
 
 <p align="center">
-  <a href="https://travis-ci.com/gauntface/hopin-web-build-tools"><img src="https://github.com/gauntface/hopin-web-build-tools/workflows/Build%20and%20Publish/badge.svg" alt="Build and Publish Status" /></a>
+  <img src="https://github.com/gauntface/hopin-web-build-tools/workflows/Build%20and%20Publish/badge.svg" alt="Build and Publish Status" />
   <a href="https://coveralls.io/github/gauntface/hopin-web-build-tools?branch=master"><img src="https://img.shields.io/coveralls/github/gauntface/hopin-web-build-tools.svg" alt="Coverage Status" /></a>
 </p>
 
