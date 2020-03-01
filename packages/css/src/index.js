@@ -50,10 +50,8 @@ function build(overrides, opts) {
   ];
 
   const renameopts = {};
-  if (opts.preserve) {
-    renameopts.extname = '.dev.css';
-  } else {
-    renameopts.extname = '.prod.css';
+  if (opts.extname) {
+    renameopts.extname = opts.extname;
   }
 
   return new Promise(function (resolve, reject) {
@@ -67,26 +65,13 @@ function build(overrides, opts) {
   });
 }
 
-function buildAll(overrides, opts) {
-  return build(overrides, Object.assign({}, opts, {preserve: true}))
-  .then(() => build(overrides, Object.assign({}, opts, {preserve: false})));
-}
-
 function gulpBuild(overrides, opts) {
   const func = () => build(overrides, opts)
   func.displayName = `@hopin/wbt-css`;
   return func
 }
 
-function gulpBuildAll(overrides, opts) {
-  const func = () => buildAll(overrides, opts)
-  func.displayName = `@hopin/wbt-css`;
-  return func
-}
-
 module.exports = {
   build,
-  buildAll,
   gulpBuild,
-  gulpBuildAll,
 };

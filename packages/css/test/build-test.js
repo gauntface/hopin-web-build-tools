@@ -21,7 +21,7 @@ test.serial('should build css files using default config', async (t) => {
 	});	
 
 	const expectedDstFiles = {
-		[path.join(dstDir, 'index.dev.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
+		[path.join(dstDir, 'index.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
 	}
 	for (const dstFile of Object.keys(expectedDstFiles)) {
 		try {
@@ -63,7 +63,38 @@ test.serial('should gulp build css files using default config', async (t) => {
 	await buildFn();	
 
 	const expectedDstFiles = {
-		[path.join(dstDir, 'index.dev.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
+		[path.join(dstDir, 'index.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
+	}
+	for (const dstFile of Object.keys(expectedDstFiles)) {
+		try {
+			await fs.access(dstFile);
+			const buffer = await fs.readFile(dstFile);
+			const contents = buffer.toString();
+			t.deepEqual(contents, expectedDstFiles[dstFile]);
+		} catch (err) {
+			t.fail(`Unable to read file: ${dstFile}`)
+		}
+    }
+});
+
+test.serial('should gulp build css files using custom config', async (t) => {
+	const srcDir = path.join(__dirname, 'static', 'working-project');
+	const dstDir = await mkdtemp(path.join(os.tmpdir(), 'wbt-css'));
+	setConfig(srcDir, dstDir);
+
+	const buildFn = gulpBuild({}, {
+		preserve: false,
+		extname: '.prod.css',
+		importPaths: [
+			path.join(srcDir, 'static'),
+		],
+	});
+	t.deepEqual(buildFn.displayName, '@hopin/wbt-css');
+
+	await buildFn();	
+
+	const expectedDstFiles = {
+		[path.join(dstDir, 'index.prod.css')]: `.root-import{content:"root-import"}.nested-import{content:"nested-import"}.static-import{content:"static-import"}`,
 	}
 	for (const dstFile of Object.keys(expectedDstFiles)) {
 		try {
