@@ -5,6 +5,9 @@ const os = require('os');
 const {processFiles, gulpProcessFiles} = require('../build');
 
 test('add assets to file with default extensions', async (t) => {
+  const asyncCSSScriptPath = path.join(__dirname, '..', 'build', 'browser-assets', 'async-css-script.js');
+  const asyncCSSScript = (await fs.readFile(asyncCSSScriptPath)).toString();
+
   const srcDir = path.join(__dirname, 'static', 'example');
   const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'wbt-'));
   await fs.copy(srcDir, tmpDir);
@@ -32,11 +35,13 @@ test('add assets to file with default extensions', async (t) => {
     <!-- Additional white space to make sure it's handled correctly -->
     <div class="    c-multi-class-example-1     c-multi-class-example-2    " attribute-example="true"></div>
   
-<script>/* attribute-example-inline.js */</script><script>/* attribute-example.js */</script><script src="/js/html/p-sync.js"></script><script src="/components/c-example-sync.js"></script><script src="/attribute-example-sync.js"></script><script>const a = ['/css/html/p-async.css', '/components/c-example-async.css', '/attribute-example-async.css']; !function(){"use strict";window.addEventListener("load",function(){!function(n){if(n)for(const o of n)console.log("TODO: Add stylesheet ",o)}(a)})}();
-</script><script async defer src="/js/html/p-async.js"></script><script async defer src="/components/c-example-async.js"></script><script async defer src="/attribute-example-async.js"></script></body></html>`);
+<script>/* attribute-example-inline.js */</script><script>/* attribute-example.js */</script><script src="/js/html/p-sync.js"></script><script src="/components/c-example-sync.js"></script><script src="/attribute-example-sync.js"></script><script>const a = ['/css/html/p-async.css', '/components/c-example-async.css', '/attribute-example-async.css']; ${asyncCSSScript}</script><script async defer src="/js/html/p-async.js"></script><script async defer src="/components/c-example-async.js"></script><script async defer src="/attribute-example-async.js"></script></body></html>`);
 })
 
 test('add assets to file with custom extensions', async (t) => {
+  const asyncCSSScriptPath = path.join(__dirname, '..', 'build', 'browser-assets', 'async-css-script.js');
+  const asyncCSSScript = (await fs.readFile(asyncCSSScriptPath)).toString();
+
   const srcDir = path.join(__dirname, 'static', 'example');
   const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'wbt-'));
   await fs.copy(srcDir, tmpDir);
@@ -68,11 +73,13 @@ test('add assets to file with custom extensions', async (t) => {
     <!-- Additional white space to make sure it's handled correctly -->
     <div class="    c-multi-class-example-1     c-multi-class-example-2    " attribute-example="true"></div>
   
-<script>/* attribute-example-inline.min.js */</script><script>/* attribute-example.min.js */</script><script src="/js/html/p-sync.min.js"></script><script src="/components/c-example-sync.min.js"></script><script src="/attribute-example-sync.min.js"></script><script>const a = ['/css/html/p-async.min.css', '/components/c-example-async.min.css', '/attribute-example-async.min.css']; !function(){"use strict";window.addEventListener("load",function(){!function(n){if(n)for(const o of n)console.log("TODO: Add stylesheet ",o)}(a)})}();
-</script><script async defer src="/js/html/p-async.min.js"></script><script async defer src="/components/c-example-async.min.js"></script><script async defer src="/attribute-example-async.min.js"></script></body></html>`);
+<script>/* attribute-example-inline.min.js */</script><script>/* attribute-example.min.js */</script><script src="/js/html/p-sync.min.js"></script><script src="/components/c-example-sync.min.js"></script><script src="/attribute-example-sync.min.js"></script><script>const a = ['/css/html/p-async.min.css', '/components/c-example-async.min.css', '/attribute-example-async.min.css']; ${asyncCSSScript}</script><script async defer src="/js/html/p-async.min.js"></script><script async defer src="/components/c-example-async.min.js"></script><script async defer src="/attribute-example-async.min.js"></script></body></html>`);
 })
 
 test('add assets to file via gulp function with default extensions', async (t) => {
+  const asyncCSSScriptPath = path.join(__dirname, '..', 'build', 'browser-assets', 'async-css-script.js');
+  const asyncCSSScript = (await fs.readFile(asyncCSSScriptPath)).toString();
+
   const srcDir = path.join(__dirname, 'static', 'example');
   const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'wbt-'));
   await fs.copy(srcDir, tmpDir);
@@ -106,11 +113,13 @@ test('add assets to file via gulp function with default extensions', async (t) =
     <!-- Additional white space to make sure it's handled correctly -->
     <div class="    c-multi-class-example-1     c-multi-class-example-2    " attribute-example="true"></div>
   
-<script>/* attribute-example-inline.js */</script><script>/* attribute-example.js */</script><script src="/js/html/p-sync.js"></script><script src="/components/c-example-sync.js"></script><script src="/attribute-example-sync.js"></script><script>const a = ['/css/html/p-async.css', '/components/c-example-async.css', '/attribute-example-async.css']; !function(){"use strict";window.addEventListener("load",function(){!function(n){if(n)for(const o of n)console.log("TODO: Add stylesheet ",o)}(a)})}();
-</script><script async defer src="/js/html/p-async.js"></script><script async defer src="/components/c-example-async.js"></script><script async defer src="/attribute-example-async.js"></script></body></html>`);
+<script>/* attribute-example-inline.js */</script><script>/* attribute-example.js */</script><script src="/js/html/p-sync.js"></script><script src="/components/c-example-sync.js"></script><script src="/attribute-example-sync.js"></script><script>const a = ['/css/html/p-async.css', '/components/c-example-async.css', '/attribute-example-async.css']; ${asyncCSSScript}</script><script async defer src="/js/html/p-async.js"></script><script async defer src="/components/c-example-async.js"></script><script async defer src="/attribute-example-async.js"></script></body></html>`);
 });
 
 test('add assets to file via gulp function with custom extensions', async (t) => {
+  const asyncCSSScriptPath = path.join(__dirname, '..', 'build', 'browser-assets', 'async-css-script.js');
+  const asyncCSSScript = (await fs.readFile(asyncCSSScriptPath)).toString();
+  
   const srcDir = path.join(__dirname, 'static', 'example');
   const tmpDir = await fs.mkdtemp(path.join(os.tmpdir(), 'wbt-'));
   await fs.copy(srcDir, tmpDir);
@@ -148,6 +157,5 @@ test('add assets to file via gulp function with custom extensions', async (t) =>
     <!-- Additional white space to make sure it's handled correctly -->
     <div class="    c-multi-class-example-1     c-multi-class-example-2    " attribute-example="true"></div>
   
-<script>/* attribute-example-inline.min.js */</script><script>/* attribute-example.min.js */</script><script src="/js/html/p-sync.min.js"></script><script src="/components/c-example-sync.min.js"></script><script src="/attribute-example-sync.min.js"></script><script>const a = ['/css/html/p-async.min.css', '/components/c-example-async.min.css', '/attribute-example-async.min.css']; !function(){"use strict";window.addEventListener("load",function(){!function(n){if(n)for(const o of n)console.log("TODO: Add stylesheet ",o)}(a)})}();
-</script><script async defer src="/js/html/p-async.min.js"></script><script async defer src="/components/c-example-async.min.js"></script><script async defer src="/attribute-example-async.min.js"></script></body></html>`);
+<script>/* attribute-example-inline.min.js */</script><script>/* attribute-example.min.js */</script><script src="/js/html/p-sync.min.js"></script><script src="/components/c-example-sync.min.js"></script><script src="/attribute-example-sync.min.js"></script><script>const a = ['/css/html/p-async.min.css', '/components/c-example-async.min.css', '/attribute-example-async.min.css']; ${asyncCSSScript}</script><script async defer src="/js/html/p-async.min.js"></script><script async defer src="/components/c-example-async.min.js"></script><script async defer src="/attribute-example-async.min.js"></script></body></html>`);
 });

@@ -5,7 +5,10 @@ function addAsyncStyles(styles: Array<string>|null) {
     return
   }
   for (const s of styles) {
-    console.log('TODO: Add stylesheet ', s);
+    const link = document.createElement('link');
+    link.href = s;
+    link.rel = 'stylesheet';
+    document.body.appendChild(link);
   }
 }
 window.addEventListener('load', function() {
