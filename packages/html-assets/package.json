@@ -30,9 +30,9 @@
   "author": "gauntface",
   "license": "Apache-2.0",
   "main": "./build/index.js",
-  "version": "0.0.46",
+  "version": "0.0.47",
   "devDependencies": {
-    "@hopin/wbt-ts-browser": "^0.0.46",
-    "@hopin/wbt-ts-node": "^0.0.46"
+    "@hopin/wbt-ts-browser": "^0.0.47",
+    "@hopin/wbt-ts-node": "^0.0.47"
   }
 }
