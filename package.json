@@ -35,18 +35,18 @@
     "test": "npm run build && nyc ava ./packages/*/test/*-test.js --verbose --timeout=2m"
   },
   "devDependencies": {
-    "@types/cheerio": "0.22.16",
+    "@types/cheerio": "0.22.17",
     "@types/fs-extra": "8.1.0",
-    "@types/node": "13.7.7",
+    "@types/node": "13.9.2",
     "ava": "3.5.0",
-    "coveralls": "3.0.9",
+    "coveralls": "3.0.11",
     "express": "4.17.1",
-    "fs-extra": "8.1.0",
+    "fs-extra": "9.0.0",
     "lerna": "3.20.2",
     "nyc": "15.0.0",
     "puppeteer": "2.1.1",
-    "rollup": "1.32.0",
+    "rollup": "2.1.0",
     "rollup-plugin-size-snapshot": "0.11.0",
-    "sinon": "9.0.0"
+    "sinon": "9.0.1"
   }
 }
