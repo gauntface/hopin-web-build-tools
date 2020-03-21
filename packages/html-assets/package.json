@@ -2,15 +2,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "scripts": {
-    "build": "gulp build"
-  },
   "dependencies": {
-    "@hopin/logger": "^2.0.1",
-    "cheerio": "^1.0.0-rc.3",
-    "fs-extra": "^9.0.0",
-    "glob": "^7.1.6",
-    "gulp": "^4.0.0"
+    "@hopin/logger": "^2.0.1"
   },
   "repository": {
     "type": "git",
@@ -29,10 +22,6 @@
   "description": "A set of methods to make building web projects easier.",
   "author": "gauntface",
   "license": "Apache-2.0",
-  "main": "./build/index.js",
-  "version": "0.0.57",
-  "devDependencies": {
-    "@hopin/wbt-ts-browser": "^0.0.57",
-    "@hopin/wbt-ts-node": "^0.0.57"
-  }
+  "main": "./src/index.js",
+  "version": "0.0.57"
 }
