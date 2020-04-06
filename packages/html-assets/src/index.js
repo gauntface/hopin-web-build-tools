@@ -9,15 +9,25 @@ async function processFiles(opts) {
     opts.assetPath = opts.htmlPath;
   }
 
-  const binPath = path.join(__dirname, '..', 'bin', 'htmlassets')
-  const { stdout, stderr } = await exec(`${binPath} --html_dir=${opts.htmlPath} --assets_dir=${opts.assetPath} --silent=${opts.silent ? 'true' : 'false'}`)
-  if (!opts.silent) {
-    if (stdout) {
-      logger.log(stdout);
+  const binPath = path.join(__dirname, '..', 'bin', 'htmlassets');
+  try {
+    const { stdout, stderr } = await exec(`${binPath} --html_dir=${opts.htmlPath} --assets_dir=${opts.assetPath} --silent=${opts.silent ? 'true' : 'false'}`)
+    if (!opts.silent) {
+      if (stdout) {
+        logger.log(stdout);
+      }
+      if (stderr) {
+        logger.warn(stderr);
+      }
     }
-    if (stderr) {
-      logger.warn(stderr);
+  } catch (err) {
+    if (err.stdout) {
+      logger.error(err.stdout);
     }
+    if (err.stderr) {
+      logger.error(err.stderr);
+    }
+    throw err
   }
 }
 
