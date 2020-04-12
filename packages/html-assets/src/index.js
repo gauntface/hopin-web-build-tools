@@ -11,21 +11,21 @@ async function processFiles(opts) {
 
   const binPath = path.join(__dirname, '..', 'bin', 'htmlassets');
   try {
-    const { stdout, stderr } = await exec(`${binPath} --html_dir=${opts.htmlPath} --assets_dir=${opts.assetPath} --silent=${opts.silent ? 'true' : 'false'}`)
-    if (!opts.silent) {
+    const { stdout, stderr } = await exec(`${binPath} --html_dir=${opts.htmlPath} --assets_dir=${opts.assetPath} --json_assets_dir=${opts.jsonAssetsPath} --debug=${opts.debug}`)
+    if (opts.output) {
       if (stdout) {
-        logger.log(stdout);
+        logger.log(`Output from html asset tool:\n\n${stdout}`);
       }
       if (stderr) {
-        logger.warn(stderr);
+        logger.error(`Error output from html asset tool:\n\n${stderr}`);
       }
     }
   } catch (err) {
     if (err.stdout) {
-      logger.error(err.stdout);
+      logger.log(`Output from html asset tool:\n\n${err.stdout}`);
     }
     if (err.stderr) {
-      logger.error(err.stderr);
+      logger.error(`Error output from html asset tool:\n\n${err.stderr}`);
     }
     throw err
   }
