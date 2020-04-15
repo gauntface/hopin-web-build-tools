@@ -12,9 +12,17 @@ const defaultOpts = {
   preserve: true,
 };
 
-function build(overrides, opts) {
+async function build(overrides, opts) {
   const config = getConfig(overrides);
   opts = Object.assign(defaultOpts, opts)
+
+  const cssVarFiles = [];
+  if (opts.cssVariablesDir) {
+    const files = await fs.readdir(opts.cssVariablesDir);
+    for (const f of files) {
+      cssVarFiles.push(path.join(opts.cssVariablesDir, f))
+    }
+  }
 
   const processors = [
     atImport({
@@ -43,6 +51,7 @@ function build(overrides, opts) {
     csspresetenv({
       warnForDuplicates: false,
       preserve: opts.preserve,
+      importFrom: cssVarFiles,
     }),
     cssnano({
       discardUnused: false,
