@@ -138,7 +138,10 @@ setConfig(src, dst);
 gulp.task('build',
   gulp.series(
     'clean',
-    css.gulpBuild()
+    css.gulpBuild({
+      preserve: false,
+      cssVariablesDir: path.join(__dirname, 'src', 'css', 'variables'),
+    }),
   )
 );
 ```

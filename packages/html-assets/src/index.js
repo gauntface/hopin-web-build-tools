@@ -11,7 +11,20 @@ async function processFiles(opts) {
 
   const binPath = path.join(__dirname, '..', 'bin', 'htmlassets');
   try {
-    const { stdout, stderr } = await exec(`${binPath} --html_dir=${opts.htmlPath} --assets_dir=${opts.assetPath} --json_assets_dir=${opts.jsonAssetsPath} --debug=${opts.debug}`)
+    const flags = [];
+    if (opts.htmlPath) {
+      flags.push(`--html_dir=${opts.htmlPath}`)
+    }
+    if (opts.assetPath) {
+      flags.push(`--assets_dir=${opts.assetPath}`)
+    }
+    if (opts.jsonAssetsPath) {
+      flags.push(`--json_assets_dir=${opts.jsonAssetsPath}`)
+    }
+    if (opts.debug) {
+      flags.push(`--debug=${opts.debug}`)
+    }
+    const { stdout, stderr } = await exec(`${binPath} ${flags.join(' ')}`)
     if (opts.output) {
       if (stdout) {
         logger.log(`Output from html asset tool:\n\n${stdout}`);
