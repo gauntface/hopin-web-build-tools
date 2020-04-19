@@ -21,6 +21,9 @@ async function processFiles(opts) {
     if (opts.jsonAssetsPath) {
       flags.push(`--json_assets_dir=${opts.jsonAssetsPath}`)
     }
+    if (opts.genPath) {
+      flags.push(`--gen_dir=${opts.genPath}`)
+    }
     if (opts.debug) {
       flags.push(`--debug=${opts.debug}`)
     }
