@@ -64,7 +64,7 @@ async function build(overrides, opts) {
   }
 
   return new Promise(function (resolve, reject) {
-    gulp.src([path.posix.join(config.src, '**', '*.css'), `!${path.posix.join(config.src, '**', '_*.css')}`])
+    gulp.src(path.posix.join(config.src, '**', '*.css'))
       .pipe(
         postcss(processors).on('error', reject)
       )
