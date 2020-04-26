@@ -37,7 +37,7 @@
   "devDependencies": {
     "@types/cheerio": "0.22.17",
     "@types/fs-extra": "8.1.0",
-    "@types/node": "13.13.3",
+    "@types/node": "13.13.4",
     "ava": "3.8.0",
     "coveralls": "3.1.0",
     "express": "4.17.1",
