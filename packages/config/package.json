@@ -4,7 +4,7 @@
   },
   "dependencies": {
     "@hopin/logger": "^2.0.0",
-    "@hopin/wbt-common": "^0.0.108"
+    "@hopin/wbt-common": "^0.0.109"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,5 @@
   "author": "gauntface",
   "license": "Apache-2.0",
   "main": "./src/index.js",
-  "version": "0.0.108"
+  "version": "0.0.109"
 }
