@@ -23,5 +23,5 @@
   "author": "gauntface",
   "license": "Apache-2.0",
   "main": "./src/index.js",
-  "version": "0.0.115"
+  "version": "0.0.116"
 }
