@@ -4,3 +4,4 @@ tmp/
 .nyc_output/
 coverage/
 .size-snapshot.json
+.npmrc
