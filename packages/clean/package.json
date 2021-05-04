@@ -4,7 +4,7 @@
   },
   "dependencies": {
     "@hopin/wbt-config": "^0.0.126",
-    "fs-extra": "^9.0.0",
+    "fs-extra": "^10.0.0",
     "gulp": "^4.0.0"
   },
   "repository": {
