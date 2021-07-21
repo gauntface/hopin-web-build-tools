@@ -6,7 +6,7 @@
     "@hopin/wbt-config": "^0.0.126",
     "browserlist": "^1.0.1",
     "caniuse-lite": "^1.0.30001030",
-    "cssnano": "^4.1.4",
+    "cssnano": "^5.0.0",
     "fs-extra": "^10.0.0",
     "gulp": "^4.0.0",
     "gulp-postcss": "^9.0.0",
