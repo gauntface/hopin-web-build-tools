@@ -35,7 +35,7 @@
     "test": "npm run build && nyc ava ./packages/*/test/*-test.js --verbose --timeout=2m"
   },
   "devDependencies": {
-    "@types/cheerio": "0.22.30",
+    "@types/cheerio": "0.22.31",
     "@types/fs-extra": "9.0.13",
     "@types/node": "16.11.22",
     "ava": "4.0.1",
