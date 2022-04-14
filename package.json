@@ -47,6 +47,6 @@
     "puppeteer": "13.5.2",
     "rollup": "2.70.1",
     "rollup-plugin-size-snapshot": "0.12.0",
-    "sinon": "13.0.1"
+    "sinon": "13.0.2"
   }
 }
